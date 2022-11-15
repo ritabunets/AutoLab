@@ -8,6 +8,7 @@
             Task2();
             Task3();
         }
+
         private static void Task1()
         {
             Console.WriteLine("Task1:");
@@ -30,6 +31,7 @@
             gCar.EngineStart();
             gCar.Move();
         }
+
         private static void Task2()
         {
             Console.WriteLine("Task2:");
@@ -44,6 +46,7 @@
             eBook.TurnPage();
             eBook.Recycle();
         }
+
         private static void Task3()
         {
             Console.WriteLine("Task3:");
