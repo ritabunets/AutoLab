@@ -4,7 +4,7 @@
     {
         protected string? modelName;
         protected decimal price;
-        public abstract string? Description { get; }
+        public virtual string? Description => $"Price: {price}, model:{modelName}";
 
         public Item(string modelName, decimal price)
         {

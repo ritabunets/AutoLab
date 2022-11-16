@@ -2,8 +2,6 @@
 {
     public class Printer : ItemWorkingWithPaper
     {
-        public override string? Description => $"Price: {price}, model:{modelName}";
-
         public Printer(string modelName, decimal price, int paperWidth, int paperHeight) : base(modelName, price, paperWidth, paperHeight)
         {
         }
