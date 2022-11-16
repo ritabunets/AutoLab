@@ -10,6 +10,6 @@
             this.members = members;
         }
 
-        public new void GetEntityData() => Console.WriteLine($"{entityType} | {id} | {_domain} | Manager: {manager}");
+        public override void GetEntityData() => Console.WriteLine($"{entityType} | {id} | {_domain} | Manager: {manager}");
     }
 }

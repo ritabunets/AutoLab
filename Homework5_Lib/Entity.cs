@@ -1,11 +1,11 @@
 ﻿namespace Homework5_Lib
 {
-    public class Entity
+    public abstract class Entity
     {
-        public string entityType;
-        public int id;
-        public string manager;
-        public Employee[] members = new Employee[0];
+        protected string entityType;
+        protected int id;
+        protected string manager;
+        protected Employee[] members = new Employee[0];
 
         public Entity(string entityType, int id, string manager)
         {
@@ -14,7 +14,7 @@
             this.manager = manager;
         }
 
-        public void GetEntityData() => Console.WriteLine($"{entityType} | {id} | Manager: {manager}\n");
+        public virtual void GetEntityData() => Console.WriteLine($"{entityType} | {id} | Manager: {manager}\n");
 
         public void GetEntityMembersData()
         {

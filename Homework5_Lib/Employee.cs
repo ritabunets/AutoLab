@@ -2,14 +2,14 @@
 {
     public class Employee
     {
-        public const int defaultSalary = 500;
-        public string? firstName;
-        public string? lastName;
-        public int age;
-        public string? jobTitle;
-        public string? seniority;
-        public double experience;
-        public double salary;
+        private const int defaultSalary = 500;
+        private string? firstName;
+        private string? lastName;
+        private int age;
+        private string? jobTitle;
+        private string? seniority;
+        private double experience;
+        private double salary;
 
         public Employee(string firstName, string lastName, int age, double experience, string jobTitle)
         {
