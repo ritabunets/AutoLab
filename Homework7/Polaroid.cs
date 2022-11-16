@@ -4,7 +4,7 @@
     {
         private double _numberOfPixelsInCamera;
         public double NumberOfPixelsInCamera { get { return _numberOfPixelsInCamera; } set { _numberOfPixelsInCamera = value; } }
-        public string? Description => $"Price: {price}, model:{modelName}, number of pixels in camera: {_numberOfPixelsInCamera}";
+        public override string? Description => $"Price: {price}, model:{modelName}, number of pixels in camera: {_numberOfPixelsInCamera}";
 
         public Polaroid(string modelName, decimal price, int paperWidth, int paperHeight, double numberOfPixelsInCamera) : base(modelName, price, paperWidth, paperHeight)
         {

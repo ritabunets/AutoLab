@@ -4,7 +4,7 @@
     {
         protected string? modelName;
         protected decimal price;
-        string? Description { get; }
+        public abstract string? Description { get; }
 
         public Item(string modelName, decimal price)
         {
