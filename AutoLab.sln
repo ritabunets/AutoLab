@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework1", "AutoLab\Homework1.csproj", "{35F23AF6-FF07-4CAB-A5E7-70BAA8A7BA74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework1", "AutoLab\Homework1.csproj", "{35F23AF6-FF07-4CAB-A5E7-70BAA8A7BA74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework3", "Homework3\Homework3.csproj", "{2B73A223-C166-4B8C-A1DE-C07C1B0250E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework3", "Homework3\Homework3.csproj", "{2B73A223-C166-4B8C-A1DE-C07C1B0250E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework4", "Homework4\Homework4.csproj", "{099083DF-D5B3-4D5A-A1E8-C65129972F6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework4", "Homework4\Homework4.csproj", "{099083DF-D5B3-4D5A-A1E8-C65129972F6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework5_Lib", "Homework5_Lib\Homework5_Lib.csproj", "{EDE3006F-E767-4020-BE10-2EE57FEAF1B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework5_Lib", "Homework5_Lib\Homework5_Lib.csproj", "{EDE3006F-E767-4020-BE10-2EE57FEAF1B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework5_Main", "Homework5_Main\Homework5_Main.csproj", "{D6A57EB0-F240-473E-87DF-9684DDDC3B8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework5_Main", "Homework5_Main\Homework5_Main.csproj", "{D6A57EB0-F240-473E-87DF-9684DDDC3B8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework7", "Homework7\Homework7.csproj", "{3CF9BB53-791C-4B94-B1D6-31A8D243865A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{D6A57EB0-F240-473E-87DF-9684DDDC3B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6A57EB0-F240-473E-87DF-9684DDDC3B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6A57EB0-F240-473E-87DF-9684DDDC3B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF9BB53-791C-4B94-B1D6-31A8D243865A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF9BB53-791C-4B94-B1D6-31A8D243865A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF9BB53-791C-4B94-B1D6-31A8D243865A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF9BB53-791C-4B94-B1D6-31A8D243865A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
