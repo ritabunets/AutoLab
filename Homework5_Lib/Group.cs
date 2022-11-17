@@ -1,43 +1,39 @@
 ﻿namespace Homework5_Lib
 {
-    public class Group
+    public class Group : Entity
     {
-        public int _groupId;
-        public string? _groupManager;
-        public Team[] _groupTeams = new Team[0];
+        private Team[] _teams = new Team[0];
 
-        public Group()
+        public Group(string entityType, int id, string manager) : base(entityType, id, manager)
         {
         }
+
         public void AddTeamToGroup(Team[] groupTeams)
         {
             foreach (Team groupTeam in groupTeams)
             {
-                var arrayLength = _groupTeams.Length + 1;
-                Array.Resize(ref _groupTeams, arrayLength);
-                _groupTeams.SetValue(groupTeam, _groupTeams.Length - 1);
+                var arrayLength = _teams.Length + 1;
+                Array.Resize(ref _teams, arrayLength);
+                _teams.SetValue(groupTeam, _teams.Length - 1);
             }
         }
-        public void DisplayGroupData()
+
+        public void GetGroupTeamsData()
         {
-            Console.WriteLine($"G{_groupId} | Manager: {_groupManager}\n");
-        }
-        public void DisplayGroupTeams()
-        {
-            Console.WriteLine($"Teams of G{_groupId}:");
+            Console.WriteLine($"Teams of {EntityType}{Id}:");
             try
             {
-                foreach (var team in _groupTeams)
+                foreach (var team in _teams)
                 {
-                    team.DisplayTeamData();
-                    team.DisplayTeamMembers();
+                    team.GetEntityData();
+                    team.GetEntityMembersData();
                 }
             }
             catch
             {
-                Console.WriteLine("There is no teams in this group.");
+                Console.WriteLine($"There is no teams in this {EntityType}.");
             }
             Console.WriteLine("\n");
-        }        
+        }
     }
 }

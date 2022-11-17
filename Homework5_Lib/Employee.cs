@@ -2,42 +2,39 @@
 {
     public class Employee
     {
-        public const int _defaultSalary = 500;
-        public string? _firstName;
-        public string? _lastName;
-        public int _age;
-        public string? _jobTitle;
-        public string? _seniority;
-        public double _experience;
-        public double _salary;
-        public Employee(string firstName, string lastName, int age)
+        private const int DefaultSalary = 500;
+        private string? _firstName;
+        private string? _lastName;
+        private int _age;
+        private string? _jobTitle;
+        private string? _seniority;
+        private double _experience;
+        private double _salary;
+
+        public Employee(string firstName, string lastName, int age, double experience, string jobTitle)
         {
             _firstName = firstName;
             _lastName = lastName;
             _age = age;
-        }
-        public Employee(string firstName, string lastName, int age, double experience, string jobTitle) : this (firstName, lastName, age)
-        {
             _experience = experience;
             _jobTitle = jobTitle;
         }
-        public string GetFullName()
-        {
-            return _firstName + " " + _lastName;
-        }
+
+        public string GetFullName() => $"{_firstName} {_lastName}";
+
         public double CalculateSalary()
         {
             if (_experience >= 0 & _experience <= 1)
             {
-                _salary = _defaultSalary;
+                _salary = DefaultSalary;
             }
             else if (_experience > 1 & _experience <= 5)
             {
-                _salary = _defaultSalary * _experience;
+                _salary = DefaultSalary * _experience;
             }
             else if (_experience > 5)
             {
-                _salary = _defaultSalary * _experience;
+                _salary = DefaultSalary * _experience;
             }
             else
             {
@@ -45,6 +42,7 @@
             }
             return _salary;
         }
+
         public string CalculateSeniority()
         {
             if (_experience >= 0 & _experience <= 1)
@@ -60,10 +58,12 @@
                 _seniority = "Senior";
             }
             return _seniority;
-
         }
-        public void DisplaySalary() => Console.WriteLine($"Salary:{CalculateSalary()}$");
-        public void DisplayPersonalData() => Console.WriteLine($"Name: {_firstName} {_lastName}, age:{_age} years.");
-        public void DisplayJobData() => Console.WriteLine($"{CalculateSeniority()} {_jobTitle}");
+
+        public void GetSalary() => Console.WriteLine($"Salary:{CalculateSalary()}$");
+
+        public void GetPersonalData() => Console.WriteLine($"Name: {_firstName} {_lastName}, age:{_age} years.");
+
+        public void GetJobData() => Console.WriteLine($"{CalculateSeniority()} {_jobTitle}");
     }
 }

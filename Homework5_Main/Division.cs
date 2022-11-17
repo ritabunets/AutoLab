@@ -14,16 +14,16 @@ namespace Homework5_Main
             Employee alex = new Employee(firstName: "Alex", lastName: "Shebuchev", age: 30, experience: 12, jobTitle: "BE");
             Employee andrey = new Employee(firstName: "Andrey", lastName: "Kress", age: 35, experience: 15, jobTitle: "DB");
 
-            Team t1 = new Team(teamId: 1, teamDomain: "FE", teamManager: masha.GetFullName(), teamMembers: new Employee[] { masha });
-            Team t2 = new Team(teamId: 2, teamDomain: "QA", teamManager: rita.GetFullName(), teamMembers: new Employee[] { rita, aksana });
-            Team t3 = new Team(teamId: 3, teamDomain: "AQA", teamManager: ivan.GetFullName(), teamMembers: new Employee[] { ivan, yauheny });
-            Team t4 = new Team(teamId: 4, teamDomain: "BE", teamManager: alex.GetFullName(), teamMembers: new Employee[] { alex });
+            Team t1 = new Team("Team", id: 1, domain: "FE", manager: masha.GetFullName(), members: new Employee[] { masha });
+            Team t2 = new Team("Team", id: 2, domain: "QA", manager: rita.GetFullName(), members: new Employee[] { rita, aksana });
+            Team t3 = new Team("Team", id: 3, domain: "AQA", manager: ivan.GetFullName(), members: new Employee[] { ivan, yauheny });
+            Team t4 = new Team("Team", id: 4, domain: "BE", manager: alex.GetFullName(), members: new Employee[] { alex });
 
-            Group g2 = new() { _groupId = 4, _groupManager = andrey.GetFullName()};
+            Group g2 = new Group (entityType: "Group", id: 2, manager: andrey.GetFullName());
             var g2Teams = new Team[] { t1, t2, t3, t4 };
             g2.AddTeamToGroup(g2Teams);
-            g2.DisplayGroupData();
-            g2.DisplayGroupTeams();
+            g2.GetEntityData();
+            g2.GetGroupTeamsData();
         }
     }
 }
