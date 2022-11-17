@@ -20,7 +20,7 @@
 
         public void GetGroupTeamsData()
         {
-            Console.WriteLine($"Teams of {entityType}{id}:");
+            Console.WriteLine($"Teams of {EntityType}{Id}:");
             try
             {
                 foreach (var team in _teams)
@@ -31,7 +31,7 @@
             }
             catch
             {
-                Console.WriteLine($"There is no teams in this {entityType}.");
+                Console.WriteLine($"There is no teams in this {EntityType}.");
             }
             Console.WriteLine("\n");
         }

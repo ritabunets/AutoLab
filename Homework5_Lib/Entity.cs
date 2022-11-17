@@ -2,26 +2,26 @@
 {
     public abstract class Entity
     {
-        protected string entityType;
-        protected int id;
-        protected string manager;
-        protected Employee[] members = new Employee[0];
+        protected string EntityType;
+        protected int Id;
+        protected string Manager;
+        protected Employee[] Members = new Employee[0];
 
         public Entity(string entityType, int id, string manager)
         {
-            this.entityType = entityType;
-            this.id = id;
-            this.manager = manager;
+            EntityType = entityType;
+            Id = id;
+            Manager = manager;
         }
 
-        public virtual void GetEntityData() => Console.WriteLine($"{entityType} | {id} | Manager: {manager}\n");
+        public virtual void GetEntityData() => Console.WriteLine($"{EntityType} | {Id} | Manager: {Manager}\n");
 
         public void GetEntityMembersData()
         {
-            Console.WriteLine($"Members of {entityType}{id}:");
+            Console.WriteLine($"Members of {EntityType}{Id}:");
             try
             {
-                foreach (var employee in members)
+                foreach (var employee in Members)
                 {
                     employee.GetPersonalData();
                     employee.GetJobData();

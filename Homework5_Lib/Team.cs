@@ -7,9 +7,9 @@
         public Team(string entityType, int id, string domain, string manager, Employee[] members) : base(entityType, id, manager)
         {
             _domain = domain;
-            this.members = members;
+            Members = members;
         }
 
-        public override void GetEntityData() => Console.WriteLine($"{entityType} | {id} | {_domain} | Manager: {manager}");
+        public override void GetEntityData() => Console.WriteLine($"{EntityType} | {Id} | {_domain} | Manager: {Manager}");
     }
 }
