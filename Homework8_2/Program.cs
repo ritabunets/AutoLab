@@ -4,9 +4,8 @@
     {
         private static void Main(string[] args)
         {
-            RealEstateObject flat1 = new RealEstateObject() { address = "Lithuania, Vilnius", price = 190, square = 48.5 };
-            RealEstateObject flat2 = new RealEstateObject() { address = "", price = 190000, square = 48.5};
-            RealEstateObject flat3 = new RealEstateObject() { address = "Lithuania, Vilnius", price = 190000, square = 10 };
+            RealEstateObject flat1 = new RealEstateObject() { Address = "Lithuania, Vilnius", Price = 1900, Square = 48.5 };
+            Console.WriteLine(flat1.CalculatePurchaseTax());
         }
     }
 }

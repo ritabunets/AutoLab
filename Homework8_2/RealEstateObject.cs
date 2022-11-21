@@ -5,7 +5,9 @@
         private string? _address;
         private double _square;
         private int _price;
-        public string? address
+        private double _purchaseTax;
+
+        public string? Address
         {
             get => _address;
             set
@@ -16,7 +18,8 @@
                     _address = value;
             }
         }
-        public double square
+
+        public double Square
         {
             get => _square;
             set
@@ -27,7 +30,8 @@
                     _square = value;
             }
         }
-        public int price
+
+        public int Price
         {
             get => _price;
             set
@@ -37,6 +41,15 @@
                 else
                     _price = value;
             }
+        }
+
+        public double CalculatePurchaseTax()
+        {
+            _purchaseTax = _price * _square * 0.0005;
+            if (_purchaseTax < 2500)
+                throw new Exception($"Tax cannot be less than 2500! Calculated tax is {_purchaseTax}");
+            else
+                return _purchaseTax;
         }
     }
 }
