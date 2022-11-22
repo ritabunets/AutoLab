@@ -2,16 +2,21 @@
 {
     public class RealEstateObjectExceptions : Exception
     {
-        public RealEstateObjectExceptions(string? address) : base($"Address is not set.")
+        private double _minSquere;
+        private double _minPrice;
+
+        public RealEstateObjectExceptions() : base($"Address is not set.")
         {
         }
 
-        public RealEstateObjectExceptions(double square) : base($"Invalid square set. Square:{square}")
+        public RealEstateObjectExceptions(double minSquere, double square) : base($"Min square is {minSquere}. {square} was set.")
         {
+            _minSquere = minSquere;
         }
 
-        public RealEstateObjectExceptions(int price) : base($"Invalid price set. Price:{price}")
+        public RealEstateObjectExceptions(int minPrice, int price) : base($"Min price is {minPrice}. {price} was set.")
         {
+            _minPrice = minPrice;
         }
     }
 }

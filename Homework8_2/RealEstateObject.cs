@@ -2,6 +2,8 @@
 {
     public class RealEstateObject
     {
+        private const double MinSquare = 25.5;
+        private const double MinPrice = 1000;
         private string? _address;
         private double _square;
         private int _price;
@@ -13,7 +15,7 @@
             set
             {
                 if (value.Equals(string.Empty))
-                    throw new RealEstateObjectExceptions(value);
+                    throw new RealEstateObjectExceptions();
                 else
                     _address = value;
             }
@@ -24,8 +26,8 @@
             get => _square;
             set
             {
-                if (value < 20)
-                    throw new RealEstateObjectExceptions(value);
+                if (MinSquare > value)
+                    throw new RealEstateObjectExceptions(MinSquare, value);
                 else
                     _square = value;
             }
@@ -36,8 +38,8 @@
             get => _price;
             set
             {
-                if (value < 1000)
-                    throw new RealEstateObjectExceptions(value);
+                if (MinPrice > value)
+                    throw new RealEstateObjectExceptions(MinPrice, value);
                 else
                     _price = value;
             }
