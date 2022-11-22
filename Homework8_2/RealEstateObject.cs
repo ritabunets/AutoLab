@@ -15,8 +15,9 @@
             set
             {
                 if (value.Equals(string.Empty))
+                {
                     throw new RealEstateObjectExceptions();
-                else
+                }
                     _address = value;
             }
         }
@@ -27,8 +28,9 @@
             set
             {
                 if (MinSquare > value)
+                {
                     throw new RealEstateObjectExceptions(MinSquare, value);
-                else
+                }
                     _square = value;
             }
         }
@@ -39,8 +41,9 @@
             set
             {
                 if (MinPrice > value)
+                {
                     throw new RealEstateObjectExceptions(MinPrice, value);
-                else
+                }
                     _price = value;
             }
         }
@@ -49,8 +52,9 @@
         {
             _purchaseTax = _price * _square * 0.0005;
             if (_purchaseTax < 2500)
+            {
                 throw new Exception($"Tax cannot be less than 2500! Calculated tax is {_purchaseTax}");
-            else
+            }
                 return _purchaseTax;
         }
     }
