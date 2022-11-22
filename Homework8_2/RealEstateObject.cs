@@ -3,7 +3,7 @@
     public class RealEstateObject
     {
         private const double MinSquare = 25.5;
-        private const double MinPrice = 1000;
+        private const int MinPrice = 1000;
         private string? _address;
         private double _square;
         private int _price;
