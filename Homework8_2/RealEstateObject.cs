@@ -18,7 +18,7 @@
                 {
                     throw new RealEstateObjectExceptions();
                 }
-                    _address = value;
+                _address = value;
             }
         }
 
@@ -31,7 +31,7 @@
                 {
                     throw new RealEstateObjectExceptions(MinSquare, value);
                 }
-                    _square = value;
+                _square = value;
             }
         }
 
@@ -44,7 +44,7 @@
                 {
                     throw new RealEstateObjectExceptions(MinPrice, value);
                 }
-                    _price = value;
+                _price = value;
             }
         }
 
@@ -55,7 +55,7 @@
             {
                 throw new Exception($"Tax cannot be less than 2500! Calculated tax is {_purchaseTax}");
             }
-                return _purchaseTax;
+            return _purchaseTax;
         }
     }
 }
