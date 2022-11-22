@@ -2,9 +2,9 @@
 {
     public class RealEstateObjectExceptions : Exception
     {
-        private const string? _message = "Value cannot be null";
+        private const string? ValueIsNullMessage = "Value cannot be null";
 
-        public RealEstateObjectExceptions() : base(_message)
+        public RealEstateObjectExceptions() : base(ValueIsNullMessage)
         {
         }
 
