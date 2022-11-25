@@ -41,10 +41,10 @@
             Console.WriteLine("---Task 3:");
             var country = new Dictionary<string, City>()
             {
-                {"vilnius", new City() {population = 544386, square = 401 } },
+                {"vilnius", new City() {population = 544386, square = 401} },
                 {"klaipeda", new City() {population = 152818, square = 98} },
                 {"palanga", new City () {population = 18207, square = 79} },
-                {"kaunas",  new City() {population = 295269, square = 157 } },
+                {"kaunas",  new City() {population = 295269, square = 157} },
                 {"panevezhis", new City() {population = 85885, square = 52.9} }
             };
 
