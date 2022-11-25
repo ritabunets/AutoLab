@@ -2,7 +2,7 @@
 {
     class DictionaryAndLINQTasks
     {
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Task1();
             Task2();
@@ -14,14 +14,14 @@
             Console.WriteLine("---Task 1:");
             var people = new Dictionary<string, int>();
             people.Add("Rita", 26);
-            people["Ivan"] = 25 ;
+            people["Ivan"] = 25;
             Console.WriteLine(people.First());
         }
 
         public static void Task2()
         {
             Console.WriteLine("---Task 2:");
-            var numbers = new List<int>() { 3, 2, 1, 0, 9, 8, 6, 7, 5, 4};
+            var numbers = new List<int>() { 3, 2, 1, 0, 9, 8, 6, 7, 5, 4 };
             var sordedNumbers = from n in numbers
                                 orderby n
                                 select n;
@@ -41,11 +41,11 @@
             Console.WriteLine("---Task 3:");
             var country = new Dictionary<string, City>()
             {
-                {"vilnius", new City (population:544386, square:401)},
-                {"klaipeda", new City (population: 152818, square: 98)},
-                {"palanga", new City(population: 18207, square: 79)},
-                {"kaunas",  new City(population: 295269, square: 157)},
-                {"panevezhis", new City(population: 85885, square: 52.9)},
+                {"vilnius", new City() {population = 544386, square = 401 } },
+                {"klaipeda", new City() {population = 152818, square = 98} },
+                {"palanga", new City () {population = 18207, square = 79} },
+                {"kaunas",  new City() {population = 295269, square = 157 } },
+                {"panevezhis", new City() {population = 85885, square = 52.9} }
             };
 
             foreach (string key in country.Keys)
@@ -65,13 +65,8 @@
                 Console.WriteLine(city.Key);
 
             Console.WriteLine("Population of all cities:");
-            int countryPopulation = 0;
-            foreach (string key in country.Keys)
-            {
-                var city = country[key];
-                countryPopulation += city.population;
-            }
-            Console.WriteLine(countryPopulation);
+            var sum = country.Sum(с => с.Value.population);
+            Console.WriteLine(sum);
         }
     }
 }

@@ -5,7 +5,7 @@
         private const int ElementToFind = 6;
         private const int ElementToAdd = 9;
 
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Task1();
             Task2();
@@ -32,7 +32,9 @@
             Console.WriteLine("The second linked list is:");
             GetLinkedList(linkedNumbers2);
             Console.WriteLine("The final joined list is:");
-            GetJoinedLists(linkedNumbers1, linkedNumbers2);
+            List<int> joinedNumbers = new List<int>();
+            GetJoinedLists(linkedNumbers1, linkedNumbers2, joinedNumbers);
+            GetElements(joinedNumbers);
         }
     }
 }

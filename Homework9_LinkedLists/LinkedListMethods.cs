@@ -25,18 +25,25 @@
             }
         }
 
-        public static void GetJoinedLists(LinkedList<int> linkedNumbers1, LinkedList<int> linkedNumbers2)
+        public static void GetJoinedLists(LinkedList<int> linkedNumbers1, LinkedList<int> linkedNumbers2, List<int> joinedNumbers)
         {
-            var currentNode1 = linkedNumbers1.First;
             foreach (int linkedNumber2 in linkedNumbers2)
             {
                 foreach (int linkedNumber1 in linkedNumbers1)
                 {
                    if (linkedNumber1 == linkedNumber2)
                     {
-                        Console.WriteLine(linkedNumber1);
+                        joinedNumbers.Add(linkedNumber1);
                     }
                 }
+            }
+        }
+
+        public static void GetElements(List<int> numbers)
+        {
+            foreach (int number in numbers)
+            {
+                Console.WriteLine(number);
             }
         }
     }

@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace Homework9_QueueAndStack
+﻿namespace Homework9_QueueAndStack
 {
     public class QueueAndStackMethods
     {

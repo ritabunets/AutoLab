@@ -5,7 +5,7 @@
         private const int ListLength = 10;
         private const int WordLength = 5;
 
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Task1();
             Task2();

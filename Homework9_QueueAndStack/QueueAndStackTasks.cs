@@ -5,7 +5,7 @@
         private const int ListLength = 7;
         private const int NumberOfChars = 3;
 
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Task1();
             Task2();
