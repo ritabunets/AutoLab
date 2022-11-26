@@ -41,31 +41,31 @@
             Console.WriteLine("---Task 3:");
             var country = new Dictionary<string, City>()
             {
-                {"vilnius", new City() {population = 544386, square = 401} },
-                {"klaipeda", new City() {population = 152818, square = 98} },
-                {"palanga", new City () {population = 18207, square = 79} },
-                {"kaunas",  new City() {population = 295269, square = 157} },
-                {"panevezhis", new City() {population = 85885, square = 52.9} }
+                {"vilnius", new City() {Population = 544386, Square = 401} },
+                {"klaipeda", new City() {Population = 152818, Square = 98} },
+                {"palanga", new City () {Population = 18207, Square = 79} },
+                {"kaunas",  new City() {Population = 295269, Square = 157} },
+                {"panevezhis", new City() {Population = 85885, Square = 52.9} }
             };
 
             foreach (string key in country.Keys)
             {
                 var city = country[key];
-                Console.WriteLine($"{key}, population: {city.population}, square: {city.square}.");
+                Console.WriteLine($"{key}, population: {city.Population}, square: {city.Square}.");
             }
 
             Console.WriteLine("Cities ordered by square ASC:");
-            var sortedBySquareASC = country.OrderBy(c => c.Value.square).ToList();
+            var sortedBySquareASC = country.OrderBy(c => c.Value.Square).ToList();
             foreach (var city in sortedBySquareASC)
                 Console.WriteLine(city.Key);
 
             Console.WriteLine("Cities ordered by population DESC:");
-            var sortedByPopulationDESC = country.OrderByDescending(c => c.Value.population).ToList();
+            var sortedByPopulationDESC = country.OrderByDescending(c => c.Value.Population).ToList();
             foreach (var city in sortedByPopulationDESC)
                 Console.WriteLine(city.Key);
 
             Console.WriteLine("Population of all cities:");
-            var sum = country.Sum(с => с.Value.population);
+            var sum = country.Sum(с => с.Value.Population);
             Console.WriteLine(sum);
         }
     }
