@@ -1,7 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
-
-namespace Homework10
+﻿namespace Homework10
 {
     public class Program
     {
@@ -39,7 +36,6 @@ namespace Homework10
                     generatedElements.AddElement(i, human);
                 }
             }
-
         }
     }
 }
