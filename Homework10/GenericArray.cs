@@ -1,4 +1,6 @@
-﻿namespace Homework10
+﻿using System.Text;
+
+namespace Homework10
 {
     public class GenericArray<T> where T : Human
     {
@@ -6,46 +8,53 @@
 
         public GenericArray(int size)
         {
-            _array = new T[size + 1];
+            _array = new T[] {};
         }
 
-        public int GetAraryLength() => _array.Length;
-
-        public void AddElement(int index, T element)
+        public void AddElement(T element)
         {
-            _array[index] = element;
+            Array.Resize(ref _array, _array.Length + 1);
+            _array.SetValue(element, _array.Length - 1);
         }
 
         public T GetElement(int index) => _array[index];
 
-        public void RemoveElement(ref T[] _array, int index)
+        public void RemoveElement(int index)
         {
-            T[] tmp = new T[_array.Length - 1];
-            for (int i = 0; i < index; i++)
+            if (index < 0 || index >= _array.Length-1)
             {
-                tmp[i] = _array[i];
+                throw new Exception("Set index is out of range, nothing is removed.");
             }
-            for (int i = index; i < tmp.Length; i++)
-            {
-                tmp[i] = _array[i + 1];
-            }
-            _array = tmp;
+            for (int i = index; i < _array.Length - 1; i++)
+                {
+                    _array.SetValue(_array[i + 1], i);
+                }
+            Array.Resize(ref _array, _array.Length - 1);
         }
 
-        public static void ToString(GenericArray<T> _array)
+        public override string ToString()
         {
+            var stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < GetAraryLength(); i++)
+            {
+                stringBuilder.Append($"Human is {GetElement(i).FName} {GetElement(i).LName}\n");
+            }
+
             if (typeof(T) == typeof(Woman))
             {
-                Console.WriteLine("There are only woman.");
+                stringBuilder.Append("There are only woman.\n");
             }
             else if (typeof(T) == typeof(Man))
             {
-                Console.WriteLine("There are only man.");
+                stringBuilder.Append("There are only man.\n");
             }
-            for (int i = 0; i < _array.GetAraryLength()-1; i++)
-            {
-                Console.WriteLine($"Human is {_array.GetElement(i).FName} {_array.GetElement(i).LName}");
-            }
+
+            var finalString = stringBuilder.ToString();
+
+            return finalString;
         }
+
+        private int GetAraryLength() => _array.Length; // - надо его заюзать где-то
     }
 }
