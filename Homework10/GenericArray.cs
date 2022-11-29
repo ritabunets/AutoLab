@@ -26,9 +26,9 @@ namespace Homework10
                 throw new Exception("Set index is out of range, nothing is removed.");
             }
             for (int i = index; i < _array.Length - 1; i++)
-                {
-                    _array.SetValue(_array[i + 1], i);
-                }
+            {
+                _array.SetValue(_array[i + 1], i);
+            }
             Array.Resize(ref _array, _array.Length - 1);
         }
 
