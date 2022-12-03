@@ -1,0 +1,21 @@
+{
+  "Pages": {
+    "homePage": "https://demoqa.com/",
+    "checkBoxesPage": "https://demoqa.com/checkbox",
+    "radioButtonsPage": "https://demoqa.com/radio-button",
+    "webTablesPage": "https://demoqa.com/webtables",
+    "buttonsPage": "https://demoqa.com/buttons",
+    "linksPage": "https://demoqa.com/links"
+  },
+  "UserData": {
+    "firstName": "Rita",
+    "lastName": "Bunets",
+    "email": "email@example.com",
+    "age": "26",
+    "salary": "100000",
+    "department": "QA"
+  },
+  "SearchData": {
+    "lastNameForSearch": "Vega"
+  }
+}

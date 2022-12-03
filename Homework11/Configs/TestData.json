@@ -1,0 +1,29 @@
+{
+  "Colors": {
+    "greenColor": "rgba(40, 167, 69, 1)",
+    "blueColor": "rgba(0, 123, 255, 1)"
+  },
+  "Messages": {
+    "messageDefaultText": "You have selected",
+    "messageDesktopIsSelected": "You have selected : desktop notes commands ",
+    "messagePartWithAllSelectedItems": "home desktop notes commands documents workspace react angular veu office public private classified general downloads wordFile excelFile ",
+    "expectedMessageForDoubleClick": "You have done a double click",
+    "expectedMessageForRightClick": "You have done a right click",
+    "expectedMessageForDynamicClick": "You have done a dynamic click",
+    "expectedMessageCreated": "Link has responded with staus 201 and status text Created",
+    "expectedMessageNoContent": "Link has responded with staus 204 and status text No Content",
+    "expectedMessageMoved": "Link has responded with staus 301 and status text Moved Permanently",
+    "expectedMessageBadRequest": "Link has responded with staus 400 and status text Bad Request",
+    "expectedMessageUnauthorized": "Link has responded with staus 401 and status text Unauthorized",
+    "expectedMessageForbidden": "Link has responded with staus 403 and status text Forbidden",
+    "expectedMessageNotFound": "Link has responded with staus 404 and status text Not Found"
+  },
+  "Values": {
+    "newEntryValue": "Rita Bunets 26 email@example.com 100000 QA  "
+  },
+  "Names": {
+    "expectedDoubleClickButtonName": "Double Click Me",
+    "expectedRightClickButtonName": "Right Click Me",
+    "expectedDynamicClickButtonName": "Click Me"
+  }
+}
