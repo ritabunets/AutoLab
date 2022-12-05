@@ -117,10 +117,11 @@ namespace Homework11
         [Test]
         public void DeleteFirstEntry()
         {
+            var numberOfRowsWithSearchTerm = _driver.FindElements(By.XPath("//div[contains(text(),'" + Constants.LastNameForSearch + "')]/ancestor::div[@role='row']")).Count;
             var deleteButton = _driver.FindElement(By.XPath("//span[@title='Delete']"));
             deleteButton.Click();
-            var expectedCell = _driver.FindElements(By.XPath("//div[contains(text(),'Vega')]"));
-            Assert.AreEqual(0, expectedCell.Count);
+            var numberOfRowsWithSearchTermAfterDelete = _driver.FindElements(By.XPath("//div[contains(text(),'" + Constants.LastNameForSearch + "')]/ancestor::div[@role='row']")).Count;
+            Assert.AreEqual(numberOfRowsWithSearchTerm-1, numberOfRowsWithSearchTermAfterDelete);
         }
 
         [OneTimeTearDown]
