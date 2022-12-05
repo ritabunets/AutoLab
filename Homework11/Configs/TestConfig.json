@@ -1,21 +1,21 @@
 {
   "Pages": {
-    "homePage": "https://demoqa.com/",
-    "checkBoxesPage": "https://demoqa.com/checkbox",
-    "radioButtonsPage": "https://demoqa.com/radio-button",
-    "webTablesPage": "https://demoqa.com/webtables",
-    "buttonsPage": "https://demoqa.com/buttons",
-    "linksPage": "https://demoqa.com/links"
+    "HomePage": "https://demoqa.com/",
+    "CheckBoxesPage": "https://demoqa.com/checkbox",
+    "RadioButtonsPage": "https://demoqa.com/radio-button",
+    "WebTablesPage": "https://demoqa.com/webtables",
+    "ButtonsPage": "https://demoqa.com/buttons",
+    "LinksPage": "https://demoqa.com/links"
   },
   "UserData": {
-    "firstName": "Rita",
-    "lastName": "Bunets",
-    "email": "email@example.com",
-    "age": "26",
-    "salary": "100000",
-    "department": "QA"
+    "FirstName": "Rita",
+    "LastName": "Bunets",
+    "Email": "email@example.com",
+    "Age": "26",
+    "Salary": "100000",
+    "Department": "QA"
   },
   "SearchData": {
-    "lastNameForSearch": "Vega"
+    "LastNameForSearch": "Vega"
   }
 }

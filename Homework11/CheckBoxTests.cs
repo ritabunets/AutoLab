@@ -4,22 +4,25 @@ using OpenQA.Selenium.Chrome;
 using System.Collections.ObjectModel;
 using System.Text;
 using Homework11.Configs;
+using OpenQA.Selenium.Support.UI;
 
 namespace Homework11
 {
     public class CheckBoxTests
     {
         private IWebDriver _driver;
+        private WebDriverWait _driverWait;
 
-        [SetUp]
-        public void SetUp()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Constants.checkBoxesPage);
+            _driver.Navigate().GoToUrl(Constants.CheckBoxesPage);
+            _driverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
         }
 
-        //Test1: Verify that Home is not selected if Desktop selected and check the full message.
+        // Test1: Verify that Home is not selected if Desktop selected and check the full message.
         [Test]
         public void SelectFirstLevelChildCheckBox()
         {
@@ -35,12 +38,12 @@ namespace Homework11
             {
                 Assert.IsFalse(homeCheckBox.Selected);
                 Assert.IsTrue(desktopCheckBox.Selected);
-                Assert.AreEqual(ExpectedConstants.greenColor, selectedCheckBoxNameColor);
-                Assert.AreEqual(ExpectedConstants.messageDesktopIsSelected, GetTextOfCollectionElements(selectedItems));
+                Assert.AreEqual(ExpectedConstants.GreenColor, selectedCheckBoxNameColor);
+                Assert.AreEqual(ExpectedConstants.MessageDesktopIsSelected, GetTextOfCollectionElements(selectedItems));
             });
         }
 
-        //Test2: Verify that all items are selected if Home selected and check items in the message.
+        // Test2: Verify that all items are selected if Home selected and check items in the message.
         [Test]
         public void SelectAllCheckBoxes()
         {
@@ -50,34 +53,24 @@ namespace Homework11
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(17, selectedItems.Count);
-                Assert.AreEqual(ExpectedConstants.messagePartWithAllSelectedItems, GetTextOfCollectionElements(selectedItems));
+                Assert.AreEqual(ExpectedConstants.MessagePartWithAllSelectedItems, GetTextOfCollectionElements(selectedItems));
             });
         }
 
-        //Test3: Expand all checkboxes
+        // Test3: Expand all checkboxes.
         [Test]
-        public void ExpandAllCheckBoxes()
+        public void ExpandAndCollapseAllCheckBoxes()
         {
             var expandAllButton = _driver.FindElement(By.XPath("//button[@title='Expand all']"));
             expandAllButton.Click();
-            var menuItems = _driver.FindElements(By.XPath("//span[@class='rct-text']"));
-            Assert.AreEqual(17, menuItems.Count);
-        }
-
-        //Test4: Collapse all checkboxes
-        [Test]
-        public void CollapseAllCheckBoxes()
-        {
-            var expandAllButton = _driver.FindElement(By.XPath("//button[@title='Expand all']"));
-            expandAllButton.Click();
+            Assert.AreEqual(17, GetNumberOfShownMenuItems());
             var collapseAllButton = _driver.FindElement(By.XPath("//button[@title='Collapse all']"));
             collapseAllButton.Click();
-            var menuItems = _driver.FindElements(By.XPath("//span[@class='rct-text']"));
-            Assert.AreEqual(1, menuItems.Count);
+            _driverWait.Until(_driver => 1.Equals(GetNumberOfShownMenuItems()));
         }
 
-        [TearDown]
-        public void TearDown()
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             _driver.Quit();
         }
@@ -92,7 +85,15 @@ namespace Homework11
                 stringBuilder.Append($"{text} ");
             }
             var finalString = stringBuilder.ToString();
+
             return finalString;
+        }
+
+        public int GetNumberOfShownMenuItems()
+        {
+            var menuItems = _driver.FindElements(By.XPath("//span[@class='rct-text']")).Count;
+
+            return menuItems;
         }
     }
 }

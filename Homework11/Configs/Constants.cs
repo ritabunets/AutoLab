@@ -4,19 +4,19 @@ namespace Homework11.Configs
 {
     public class Constants
     {
-        public static IConfiguration TestConfiguration = new ConfigurationBuilder().AddJsonFile("C:\\Users\\Marharyta.Bunets\\source\\repos\\AutoLab\\Homework11\\Configs\\TestConfig.json").Build();
-        public static string homePage => TestConfiguration["Pages:homePage"];
-        public static string checkBoxesPage => TestConfiguration["Pages:checkBoxesPage"];
-        public static string radioButtonsPage => TestConfiguration["Pages:radioButtonsPage"];
-        public static string webTablesPage => TestConfiguration["Pages:webTablesPage"];
-        public static string buttonsPage => TestConfiguration["Pages:buttonsPage"];
-        public static string linksPage => TestConfiguration["Pages:linksPage"];
-        public static string firstName => TestConfiguration["UserData:firstName"];
-        public static string lastName => TestConfiguration["UserData:lastName"];
-        public static string email => TestConfiguration["UserData:email"];
-        public static string age => TestConfiguration["UserData:age"];
-        public static string salary => TestConfiguration["UserData:salary"];
-        public static string department => TestConfiguration["UserData:department"];
-        public static string lastNameForSearch => TestConfiguration["SearchData:lastNameForSearch"];
+        public static IConfiguration TestConfiguration = new ConfigurationBuilder().AddJsonFile("Configs\\TestConfig.json").Build();
+        public static string HomePage => TestConfiguration["Pages:HomePage"];
+        public static string CheckBoxesPage => TestConfiguration["Pages:CheckBoxesPage"];
+        public static string RadioButtonsPage => TestConfiguration["Pages:RadioButtonsPage"];
+        public static string WebTablesPage => TestConfiguration["Pages:WebTablesPage"];
+        public static string ButtonsPage => TestConfiguration["Pages:ButtonsPage"];
+        public static string LinksPage => TestConfiguration["Pages:LinksPage"];
+        public static string FirstName => TestConfiguration["UserData:FirstName"];
+        public static string LastName => TestConfiguration["UserData:LastName"];
+        public static string Email => TestConfiguration["UserData:Email"];
+        public static string Age => TestConfiguration["UserData:Age"];
+        public static string Salary => TestConfiguration["UserData:Salary"];
+        public static string Department => TestConfiguration["UserData:Department"];
+        public static string LastNameForSearch => TestConfiguration["SearchData:LastNameForSearch"];
     }
 }

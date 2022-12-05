@@ -4,25 +4,25 @@ namespace Homework11.Configs
 {
     public class ExpectedConstants
     {
-        public static IConfiguration TestConfiguration = new ConfigurationBuilder().AddJsonFile("C:\\Users\\Marharyta.Bunets\\source\\repos\\AutoLab\\Homework11\\Configs\\TestData.json").Build();
-        public static string greenColor => TestConfiguration["Colors:greenColor"];
-        public static string blueColor => TestConfiguration["Colors:blueColor"];
-        public static string newEntryValue => TestConfiguration["Values:newEntryValue"];
-        public static string messageDefaultText => TestConfiguration["Messages:messageDefaultText"];
-        public static string messageDesktopIsSelected => TestConfiguration["Messages:messageDesktopIsSelected"];
-        public static string messagePartWithAllSelectedItems => TestConfiguration["Messages:messagePartWithAllSelectedItems"];
-        public static string expectedMessageForDoubleClick => TestConfiguration["Messages:expectedMessageForDoubleClick"];
-        public static string expectedMessageForRightClick => TestConfiguration["Messages:expectedMessageForRightClick"];
-        public static string expectedMessageForDynamicClick => TestConfiguration["Messages:expectedMessageForDynamicClick"];
-        public static string expectedMessageCreated => TestConfiguration["Messages:expectedMessageCreated"];
-        public static string expectedMessageNoContent => TestConfiguration["Messages:expectedMessageNoContent"];
-        public static string expectedMessageMoved => TestConfiguration["Messages:expectedMessageMoved"];
-        public static string expectedMessageBadRequest => TestConfiguration["Messages:expectedMessageBadRequest"];
-        public static string expectedMessageUnauthorized => TestConfiguration["Messages:expectedMessageUnauthorized"];
-        public static string expectedMessageForbidden => TestConfiguration["Messages:expectedMessageForbidden"];
-        public static string expectedMessageNotFound => TestConfiguration["Messages:expectedMessageNotFound"];        
-        public static string expectedDoubleClickButtonName => TestConfiguration["Names:expectedDoubleClickButtonName"];
-        public static string expectedRightClickButtonName => TestConfiguration["Names:expectedRightClickButtonName"];
-        public static string expectedDynamicClickButtonName => TestConfiguration["Names:expectedDynamicClickButtonName"];
+        public static IConfiguration TestConfiguration = new ConfigurationBuilder().AddJsonFile("Configs\\TestData.json").Build();
+        public static string GreenColor => TestConfiguration["Colors:GreenColor"];
+        public static string BlueColor => TestConfiguration["Colors:BlueColor"];
+        public static string NewEntryValue => TestConfiguration["Values:NewEntryValue"];
+        public static string MessageDefaultText => TestConfiguration["Messages:MessageDefaultText"];
+        public static string MessageDesktopIsSelected => TestConfiguration["Messages:MessageDesktopIsSelected"];
+        public static string MessagePartWithAllSelectedItems => TestConfiguration["Messages:MessagePartWithAllSelectedItems"];
+        public static string ExpectedMessageForDoubleClick => TestConfiguration["Messages:ExpectedMessageForDoubleClick"];
+        public static string ExpectedMessageForRightClick => TestConfiguration["Messages:ExpectedMessageForRightClick"];
+        public static string ExpectedMessageForDynamicClick => TestConfiguration["Messages:ExpectedMessageForDynamicClick"];
+        public static string ExpectedMessageCreated => TestConfiguration["Messages:ExpectedMessageCreated"];
+        public static string ExpectedMessageNoContent => TestConfiguration["Messages:ExpectedMessageNoContent"];
+        public static string ExpectedMessageMoved => TestConfiguration["Messages:ExpectedMessageMoved"];
+        public static string ExpectedMessageBadRequest => TestConfiguration["Messages:ExpectedMessageBadRequest"];
+        public static string ExpectedMessageUnauthorized => TestConfiguration["Messages:ExpectedMessageUnauthorized"];
+        public static string ExpectedMessageForbidden => TestConfiguration["Messages:ExpectedMessageForbidden"];
+        public static string ExpectedMessageNotFound => TestConfiguration["Messages:ExpectedMessageNotFound"];
+        public static string ExpectedDoubleClickButtonName => TestConfiguration["Names:ExpectedDoubleClickButtonName"];
+        public static string ExpectedRightClickButtonName => TestConfiguration["Names:ExpectedRightClickButtonName"];
+        public static string ExpectedDynamicClickButtonName => TestConfiguration["Names:ExpectedDynamicClickButtonName"];
     }
 }

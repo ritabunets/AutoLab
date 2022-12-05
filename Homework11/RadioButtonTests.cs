@@ -10,15 +10,15 @@ namespace Homework11
 
         private IWebDriver _driver;
 
-        [SetUp]
-        public void SetUp()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Constants.radioButtonsPage);
+            _driver.Navigate().GoToUrl(Constants.RadioButtonsPage);
         }
 
-        //Test1: Verify all radio buttons.
+        // Test1: Verify all radio buttons.
         [Test]
         public void VerifyAllRadioBattons()
         {
@@ -31,7 +31,7 @@ namespace Homework11
             });
         }
 
-        //Test2: Select each not disabled radio button and verify message.
+        // Test2: Select each not disabled radio button and verify message.
         [Test]
         public void SelectEnabledRadioButton()
         {
@@ -40,21 +40,21 @@ namespace Homework11
             for (int i = 0; i < availableRadioButtonLabel.Count; i++)
             {
                 availableRadioButtonLabel[i].Click();
-                var selectedRadioButtonName = _driver.FindElement(By.XPath("//span[@class='text-success']")).Text;
+                var selectedRadioButtonName = availableRadioButtonLabel[i].Text;
                 var selectedRadioButtonNameColor = _driver.FindElement(By.XPath("//span[@class='text-success']")).GetCssValue("color");
                 var selectedMessage = _driver.FindElement(By.XPath("//p[@class='mt-3']")).Text;
-                var expectedMessage = ExpectedConstants.messageDefaultText + selectedRadioButtonName;
+                var expectedMessage = ExpectedConstants.MessageDefaultText + " " + selectedRadioButtonName;
                 Assert.Multiple(() =>
                 {
                     Assert.True(availableRadioButton[i].Selected);
                     Assert.AreEqual(expectedMessage, selectedMessage);
-                    Assert.AreEqual(ExpectedConstants.greenColor, selectedRadioButtonNameColor);
+                    Assert.AreEqual(ExpectedConstants.GreenColor, selectedRadioButtonNameColor);
                 });
             }
         }
 
-        [TearDown]
-        public void TearDown()
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             _driver.Quit();
         }
