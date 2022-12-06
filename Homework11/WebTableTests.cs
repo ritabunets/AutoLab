@@ -1,16 +1,14 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Text;
 using Homework11.Configs;
-using System.Collections.Generic;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace Homework11
 {
     public class WebTableTests
     {
-
         private IWebDriver _driver;
 
         [OneTimeSetUp]
@@ -18,6 +16,11 @@ namespace Homework11
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
             _driver.Navigate().GoToUrl(Constants.WebTablesPage);
         }
 
@@ -38,11 +41,34 @@ namespace Homework11
         [Test]
         public void SearchEntry()
         {
-            var numberOfRowsWithSearchTerm = _driver.FindElements(By.XPath("//div[contains(text(),'"+Constants.LastNameForSearch+"')]/ancestor::div[@role='row']")).Count;
+            // Get the first name from the first row.
+            var firstName1 = _driver.FindElement(By.XPath("((//div[@role='rowgroup'])[1]//descendant::div[@role='gridcell'])[1]")).Text;
+
+            // Get the rows before the search operation.
+            ReadOnlyCollection<IWebElement> rows = _driver.FindElements(By.XPath("//div[@role='rowgroup']"));
+
+            // Get the rows from the collection above that contains the first name from the first entry.
+            var filteredRowsWithSearchedValue = GetListOfFilteredRows(GetListOfNotEmptyRows(rows), firstName1);
+
+            // Search.
             var searchInput = _driver.FindElement(By.XPath("//input[@id='searchBox']"));
-            FillInInput(searchInput, Constants.LastNameForSearch);
-            var numberOfRowsWithSearchTermAfterSearch = _driver.FindElements(By.XPath("//div[contains(text(),'"+Constants.LastNameForSearch+"')]/ancestor::div[@role='row']")).Count;
-            Assert.AreEqual(numberOfRowsWithSearchTerm, numberOfRowsWithSearchTermAfterSearch);
+            FillInInput(searchInput, firstName1);
+
+            // Get the rows after the search operation.
+            ReadOnlyCollection<IWebElement> resultRows = _driver.FindElements(By.XPath("//div[@role='rowgroup']"));
+
+            // Get the rows from the result collection.
+            var resultRowsWithSearchedValue = GetListOfNotEmptyRows(resultRows);
+
+            // Get the rows from the result collection that contains the first name from the first entry.
+            var filteredResultRowsWithSearchedValue = GetListOfFilteredRows(GetListOfNotEmptyRows(resultRows), firstName1);
+
+            // Check that: 1) Each result row contains the first name from the first entry. 2) Number of rows with the first name before the search is the same as after the search.
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(filteredResultRowsWithSearchedValue.Count, resultRowsWithSearchedValue.Count);
+                Assert.AreEqual(filteredRowsWithSearchedValue.Count, resultRowsWithSearchedValue.Count);
+            });
         }
 
         // Test3: Add new entry.
@@ -117,11 +143,19 @@ namespace Homework11
         [Test]
         public void DeleteFirstEntry()
         {
-            var numberOfRowsWithSearchTerm = _driver.FindElements(By.XPath("//div[contains(text(),'" + Constants.LastNameForSearch + "')]/ancestor::div[@role='row']")).Count;
-            var deleteButton = _driver.FindElement(By.XPath("//span[@title='Delete']"));
+            // Get the first name from the first row.
+            var firstName1 = _driver.FindElement(By.XPath("((//div[@role='rowgroup'])[1]//descendant::div[@role='gridcell'])[1]")).Text;
+
+            // Remove the first row.
+            var deleteButton = _driver.FindElement(By.XPath("//span[@id='delete-record-1']"));
             deleteButton.Click();
-            var numberOfRowsWithSearchTermAfterDelete = _driver.FindElements(By.XPath("//div[contains(text(),'" + Constants.LastNameForSearch + "')]/ancestor::div[@role='row']")).Count;
-            Assert.AreEqual(numberOfRowsWithSearchTerm-1, numberOfRowsWithSearchTermAfterDelete);
+
+            // Get the rows left after the delete operation.
+            ReadOnlyCollection<IWebElement> rows = _driver.FindElements(By.XPath("//div[@role='rowgroup']"));
+
+            // Get the rows from the collection above that contains the first name from removed entry.
+            var rowsWithRemovedValue = GetListOfFilteredRows(GetListOfNotEmptyRows(rows), firstName1);
+            Assert.AreEqual(0, rowsWithRemovedValue.Count);
         }
 
         [OneTimeTearDown]
@@ -140,7 +174,7 @@ namespace Homework11
             element.SendKeys(value);
         }
 
-        public string GetTextOfCollectionElements(ReadOnlyCollection<IWebElement> selectedItems)
+        private string GetTextOfCollectionElements(ReadOnlyCollection<IWebElement> selectedItems)
         {
             var stringBuilder = new StringBuilder();
             for (int i = 0; i < selectedItems.Count; i++)
@@ -152,6 +186,41 @@ namespace Homework11
             var finalString = stringBuilder.ToString();
 
             return finalString;
+        }
+
+        private List<string> GetListOfNotEmptyRows(ReadOnlyCollection<IWebElement> selectedRows)
+        {
+            List<string> rowsText = new List<string>();
+            for (int i = 0; i < selectedRows.Count; i++)
+            {
+                var stringBuilder = new StringBuilder();
+                {
+                    IWebElement element = selectedRows[i];
+                    string text = element.Text;
+                    stringBuilder.Append($"{text} ");
+                }
+                var finalString = stringBuilder.ToString();
+                if (finalString != "        ")
+                {
+                    rowsText.Add(finalString);
+                }
+            }
+
+            return rowsText;
+        }
+
+        private List<string> GetListOfFilteredRows(List<string> listOfRows, string filterValue)
+        {
+            List<string> filteredListOfRows = new List<string>();
+            for (int i = 0; i < listOfRows.Count; i++)
+            {
+                if (listOfRows[i].Contains(filterValue))
+                {
+                    filteredListOfRows.Add(listOfRows[i]);
+                }
+            }
+
+            return filteredListOfRows;
         }
     }
 }

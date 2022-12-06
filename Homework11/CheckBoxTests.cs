@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Text;
 using Homework11.Configs;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 namespace Homework11
@@ -18,8 +18,13 @@ namespace Homework11
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Constants.CheckBoxesPage);
             _driverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            _driver.Navigate().GoToUrl(Constants.CheckBoxesPage);
         }
 
         // Test1: Verify that Home is not selected if Desktop selected and check the full message.
@@ -75,7 +80,7 @@ namespace Homework11
             _driver.Quit();
         }
 
-        public string GetTextOfCollectionElements(ReadOnlyCollection<IWebElement> selectedItems)
+        private string GetTextOfCollectionElements(ReadOnlyCollection<IWebElement> selectedItems)
         {
             var stringBuilder = new StringBuilder();
             for (int i = 0; i < selectedItems.Count; i++)

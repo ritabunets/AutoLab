@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
+﻿using Homework11.Configs;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
-using Homework11.Configs;
 
 namespace Homework11
 {
@@ -16,8 +16,13 @@ namespace Homework11
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Constants.ButtonsPage);
             _driverActions = new Actions(_driver);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            _driver.Navigate().GoToUrl(Constants.ButtonsPage);
         }
 
         // Test1: Check Double click button.
@@ -29,7 +34,7 @@ namespace Homework11
             var messageForDoubleClickAction = _driver.FindElement(By.XPath("//p[@id='doubleClickMessage']")).Text;
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(ExpectedConstants.ExpectedDoubleClickButtonName, GetText(doubleClickButton));
+                Assert.AreEqual(ExpectedConstants.ExpectedDoubleClickButtonName, doubleClickButton.Text);
                 Assert.AreEqual(ExpectedConstants.ExpectedMessageForDoubleClick, messageForDoubleClickAction);
             });
         }
@@ -43,7 +48,7 @@ namespace Homework11
             var actualMessageForRightClick = _driver.FindElement(By.XPath("//p[@id='rightClickMessage']")).Text;
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(ExpectedConstants.ExpectedRightClickButtonName, GetText(rightClickButton));
+                Assert.AreEqual(ExpectedConstants.ExpectedRightClickButtonName, rightClickButton.Text);
                 Assert.AreEqual(ExpectedConstants.ExpectedMessageForRightClick, actualMessageForRightClick);
             });
         }
@@ -57,7 +62,7 @@ namespace Homework11
             var actualMessageForDynamicClick = _driver.FindElement(By.XPath("//p[@id='dynamicClickMessage']")).Text;
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(ExpectedConstants.ExpectedDynamicClickButtonName, GetText(dynamicClickButton));
+                Assert.AreEqual(ExpectedConstants.ExpectedDynamicClickButtonName, dynamicClickButton.Text);
                 Assert.AreEqual(ExpectedConstants.ExpectedMessageForDynamicClick, actualMessageForDynamicClick);
             });
         }
@@ -67,7 +72,5 @@ namespace Homework11
         {
             _driver.Quit();
         }
-
-        public string GetText(IWebElement element) => element.Text;
     }
 }

@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
+﻿using Homework11.Configs;
+using NUnit.Framework;
 using OpenQA.Selenium;
-using Homework11.Configs;
+using OpenQA.Selenium.Chrome;
 
 namespace Homework11
 {
     public class RadioButtonTests
     {
-
         private IWebDriver _driver;
 
         [OneTimeSetUp]
@@ -15,6 +14,11 @@ namespace Homework11
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
             _driver.Navigate().GoToUrl(Constants.RadioButtonsPage);
         }
 

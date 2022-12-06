@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
+﻿using Homework11.Configs;
+using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using Homework11.Configs;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 namespace Homework11
@@ -19,8 +18,13 @@ namespace Homework11
             {
                 _driver = new ChromeDriver();
                 _driver.Manage().Window.Maximize();
-                _driver.Navigate().GoToUrl(Constants.LinksPage);
                 _driverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+            }
+
+            [SetUp]
+            public void SetUp()
+            {
+                _driver.Navigate().GoToUrl(Constants.LinksPage);
             }
 
             // Test1: Check links that open new tab.

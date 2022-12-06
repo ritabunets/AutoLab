@@ -17,6 +17,5 @@ namespace Homework11.Configs
         public static string Age => TestConfiguration["UserData:Age"];
         public static string Salary => TestConfiguration["UserData:Salary"];
         public static string Department => TestConfiguration["UserData:Department"];
-        public static string LastNameForSearch => TestConfiguration["SearchData:LastNameForSearch"];
     }
 }
