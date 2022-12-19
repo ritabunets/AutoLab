@@ -45,7 +45,7 @@ namespace Homework13.Tests
             var allRows = GenericPages.WebTablePage.GetRows();
 
             // Get the rows from the collection above that contains the first name from the first entry.
-            List<string> filteredRowsWithSearchedValue = GenericPages.WebTablePage.GetListOfFilteredRows(GenericPages.WebTablePage.GetListOfNotEmptyRows(allRows), firstName1);
+            var filteredRowsCountWithSearchedValue = GenericPages.WebTablePage.GetCountOfFilteredRows(GenericPages.WebTablePage.GetListOfNotEmptyRows(allRows), firstName1);
 
             // Search.
             GenericPages.WebTablePage.FillInSearchInput(firstName1);
@@ -54,16 +54,16 @@ namespace Homework13.Tests
             var filteredRows = GenericPages.WebTablePage.GetRows();
 
             // Get the rows from the result collection.
-            List<string> resultRowsWithSearchedValue = GenericPages.WebTablePage.GetListOfNotEmptyRows(GenericPages.WebTablePage.GetRows());
+            var resultRowsCountWithSearchedValue = GenericPages.WebTablePage.GetCountOfRows(GenericPages.WebTablePage.GetListOfNotEmptyRows(GenericPages.WebTablePage.GetRows()));
 
             // Get the rows from the result collection that contains the first name from the first entry.
-            List<string> filteredResultRowsWithSearchedValue = GenericPages.WebTablePage.GetListOfFilteredRows(GenericPages.WebTablePage.GetListOfNotEmptyRows(filteredRows), firstName1);
+            var filteredResultRowsCountWithSearchedValue = GenericPages.WebTablePage.GetCountOfFilteredRows(GenericPages.WebTablePage.GetListOfNotEmptyRows(filteredRows), firstName1);
 
             // Check that: 1) Each result row contains the first name from the first entry. 2) Number of rows with the first name before the search is the same as after the search.
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(filteredResultRowsWithSearchedValue.Count , resultRowsWithSearchedValue.Count);
-                Assert.AreEqual(filteredRowsWithSearchedValue.Count, resultRowsWithSearchedValue.Count);
+                Assert.AreEqual(filteredResultRowsCountWithSearchedValue, resultRowsCountWithSearchedValue);
+                Assert.AreEqual(filteredRowsCountWithSearchedValue, resultRowsCountWithSearchedValue);
             });
         }
 
@@ -120,15 +120,19 @@ namespace Homework13.Tests
             // Get the first name from the first row.
             var firstName1 = GenericPages.WebTablePage.GetFirstName1Value();
 
+            // Get the rows number with first name from condition before the delete opetarion.
+            var initialRows = GenericPages.WebTablePage.GetRows();
+            var rowsWithInitialValue = GenericPages.WebTablePage.GetCountOfFilteredRows(GenericPages.WebTablePage.GetListOfNotEmptyRows(initialRows), firstName1);
+
             // Remove the first row.
             GenericPages.WebTablePage.ClickDeleteEntryButton();
 
-            // Get the rows left after the delete operation.
-            var rows = GenericPages.WebTablePage.GetRows();
+            // Get the rows number with first name from condition after the delete opetarion.
+            var resultRows = GenericPages.WebTablePage.GetRows();
+            var rowsWithRemovedValue = GenericPages.WebTablePage.GetCountOfFilteredRows(GenericPages.WebTablePage.GetListOfNotEmptyRows(resultRows), firstName1);
 
-            // Get the rows from the collection above that contains the first name from removed entry.
-            var rowsWithRemovedValue = GenericPages.WebTablePage.GetListOfFilteredRows(GenericPages.WebTablePage.GetListOfNotEmptyRows(rows), firstName1);
-            Assert.AreEqual(0, rowsWithRemovedValue.Count);
+            // Check that number of rows with first name from the condition is less by 1 then it was before the delete operation
+            Assert.AreEqual(rowsWithInitialValue, rowsWithRemovedValue+1);
         }
     }
 }

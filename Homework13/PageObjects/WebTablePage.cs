@@ -65,19 +65,9 @@ namespace Homework13.PageObjects
             return rowsText;
         }
 
-        public List<string> GetListOfFilteredRows(List<string> rows, string filterValue)
-        {
-            List<string> filteredListOfRows = new List<string>();
-            for (int i = 0; i < rows.Count; i++)
-            {
-                if (rows[i].Contains(filterValue))
-                {
-                    filteredListOfRows.Add(rows[i]);
-                }
-            }
+        public int GetCountOfFilteredRows(List<string> rows, string filterValue) => rows.Count(x => x.Contains(filterValue));
 
-            return filteredListOfRows;
-        }
+        public int GetCountOfRows(List<string> rows) => rows.Count;
 
         public string GetTextOfCollectionElements(ReadOnlyCollection<IWebElement> selectedItems)
         {
