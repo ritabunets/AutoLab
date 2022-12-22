@@ -1,20 +1,22 @@
-﻿using Homework13.Common.WebElements;
+﻿using Homework13.Common.Drivers;
+using Homework13.Common.Extensions;
+using Homework13.Common.WebElements;
 using OpenQA.Selenium;
 
 namespace Homework13.PageObjects
 {
     public class LinkPage
     {
-        private MyWebElement _homeLink = new(By.XPath("//a[@id='simpleLink']"));
-        private MyWebElement _homeDynamicLink = new(By.XPath("//a[@id='dynamicLink']"));
-        private MyWebElement _createdLink = new(By.XPath("//a[@id='created']"));
-        private MyWebElement _noContentLink = new(By.XPath("//a[@id='no-content']"));
-        private MyWebElement _movedLink = new(By.XPath("//a[@id='moved']"));
-        private MyWebElement _badRequestLink = new(By.XPath("//a[@id='bad-request']"));
-        private MyWebElement _unauthorizedLink = new(By.XPath("//a[@id='unauthorized']"));
-        private MyWebElement _forbiddenLink = new(By.XPath("//a[@id='forbidden']"));
-        private MyWebElement _notFoundLink = new(By.XPath("//a[@id='invalid-url']"));
-        private MyWebElement _actualMessage = new(By.XPath("//p[@id='linkResponse']"));
+        private DemoQaWebElement _homeLink = new(By.XPath("//a[@id='simpleLink']"));
+        private DemoQaWebElement _homeDynamicLink = new(By.XPath("//a[@id='dynamicLink']"));
+        private DemoQaWebElement _createdLink = new(By.XPath("//a[@id='created']"));
+        private DemoQaWebElement _noContentLink = new(By.XPath("//a[@id='no-content']"));
+        private DemoQaWebElement _movedLink = new(By.XPath("//a[@id='moved']"));
+        private DemoQaWebElement _badRequestLink = new(By.XPath("//a[@id='bad-request']"));
+        private DemoQaWebElement _unauthorizedLink = new(By.XPath("//a[@id='unauthorized']"));
+        private DemoQaWebElement _forbiddenLink = new(By.XPath("//a[@id='forbidden']"));
+        private DemoQaWebElement _notFoundLink = new(By.XPath("//a[@id='invalid-url']"));
+        private DemoQaWebElement _actualMessage = new(By.XPath("//p[@id='linkResponse']"));
 
         public void ClickHomeLink() => _homeLink.Click();
 
@@ -34,6 +36,9 @@ namespace Homework13.PageObjects
 
         public void ClickNotFoundLink() => _notFoundLink.Click();
 
-        public string GetResponseMessageText() => _actualMessage.Text;
+        public void ConfirmMessageIsDisplayed(string message)
+        {
+            WebDriverFactory.Driver.GetWebDriverWait().Until(d => _actualMessage.Text.Equals(message));
+        }
     }
 }

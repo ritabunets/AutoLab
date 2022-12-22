@@ -1,5 +1,6 @@
 ﻿using Homework13.Common.Drivers;
 using Homework13.Common.Extensions;
+using Homework13.Data;
 using Homework13.Data.Constants;
 using Homework13.PageObjects;
 using NUnit.Framework;
@@ -24,9 +25,6 @@ namespace Homework13.Tests
             WebDriverFactory.Driver.SwitchToOriginalWindow();
             GenericPages.LinkPage.ClickHomeDynamicLink();
             Assert.AreEqual(TestSettings.HomePage, WebDriverFactory.Driver.GetNewWindowUrl());
-
-            // Postcondition: return to original state.
-            WebDriverFactory.Driver.SwitchToOriginalWindow();
         }
 
         // Test2: Check links that simulate work with API.
@@ -42,25 +40,31 @@ namespace Homework13.Tests
             const string expectedMessageNotFound = "Link has responded with staus 404 and status text Not Found";
 
             GenericPages.LinkPage.ClickCreatedLink();
-            WebDriverFactory.Driver.GetWebDriverWait().Until(d => GenericPages.LinkPage.GetResponseMessageText().Equals(expectedMessageCreated));
+            GenericPages.LinkPage.ConfirmMessageIsDisplayed(expectedMessageCreated);
 
             GenericPages.LinkPage.ClickNoContentLink();
-            WebDriverFactory.Driver.GetWebDriverWait().Until(d => GenericPages.LinkPage.GetResponseMessageText().Equals(expectedMessageNoContent));
+            GenericPages.LinkPage.ConfirmMessageIsDisplayed(expectedMessageNoContent);
 
             GenericPages.LinkPage.ClickMovedLink();
-            WebDriverFactory.Driver.GetWebDriverWait().Until(d => GenericPages.LinkPage.GetResponseMessageText().Equals(expectedMessageMoved));
+            GenericPages.LinkPage.ConfirmMessageIsDisplayed(expectedMessageMoved);
 
             GenericPages.LinkPage.ClickBadRequestLink();
-            WebDriverFactory.Driver.GetWebDriverWait().Until(d => GenericPages.LinkPage.GetResponseMessageText().Equals(expectedMessageBadRequest));
+            GenericPages.LinkPage.ConfirmMessageIsDisplayed(expectedMessageBadRequest);
 
             GenericPages.LinkPage.ClickUnauthorizedLink();
-            WebDriverFactory.Driver.GetWebDriverWait().Until(d => GenericPages.LinkPage.GetResponseMessageText().Equals(expectedMessageUnauthorized));
+            GenericPages.LinkPage.ConfirmMessageIsDisplayed(expectedMessageUnauthorized);
 
             GenericPages.LinkPage.ClickForbiddenLink();
-            WebDriverFactory.Driver.GetWebDriverWait().Until(d => GenericPages.LinkPage.GetResponseMessageText().Equals(expectedMessageForbidden));
+            GenericPages.LinkPage.ConfirmMessageIsDisplayed(expectedMessageForbidden);
 
             GenericPages.LinkPage.ClickNotFoundLink();
-            WebDriverFactory.Driver.GetWebDriverWait().Until(d => GenericPages.LinkPage.GetResponseMessageText().Equals(expectedMessageNotFound));
+            GenericPages.LinkPage.ConfirmMessageIsDisplayed(expectedMessageNotFound);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            WebDriverFactory.Driver.CloseAllWindowsExceptFirst();
         }
     }
 }

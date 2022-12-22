@@ -2,8 +2,6 @@
 {
     public static class GenericPages
     {
-        public static T GetPage<T>() where T : new() => new T();
-
         public static BaseElementsPage BaseElementsPage => GetPage<BaseElementsPage>();
 
         public static CheckBoxPage CheckBoxPage => GetPage<CheckBoxPage>();
@@ -15,5 +13,7 @@
         public static ButtonPage ButtonPage => GetPage<ButtonPage>();
 
         public static LinkPage LinkPage => GetPage<LinkPage>();
+
+        private static T GetPage<T>() where T : new() => new T();
     }
 }

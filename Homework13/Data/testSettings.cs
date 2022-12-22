@@ -1,7 +1,7 @@
 ﻿using Homework13.Data.Enums;
 using Microsoft.Extensions.Configuration;
 
-namespace Homework13.Data.Constants
+namespace Homework13.Data
 {
     public static class TestSettings
     {

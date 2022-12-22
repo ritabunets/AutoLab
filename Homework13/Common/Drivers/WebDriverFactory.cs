@@ -1,6 +1,5 @@
 ﻿using System.Collections.Concurrent;
 using Homework13.Data;
-using Homework13.Data.Constants;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -37,6 +36,7 @@ namespace Homework13.Common.Drivers
         {
             Driver.Quit();
             Driver.Dispose();
+            DriverCollection.TryRemove(TestContextValues.ExecutableClassName, out _);
         }
 
         private static void InitializeDriver()

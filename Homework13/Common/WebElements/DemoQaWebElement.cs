@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 
 namespace Homework13.Common.WebElements
 {
-    public class MyWebElement : IWebElement
+    public class DemoQaWebElement : IWebElement
     {
         protected By By { get; set; }
 
@@ -26,7 +26,7 @@ namespace Homework13.Common.WebElements
 
         public bool Displayed => WebElement.Displayed;
 
-        public MyWebElement(By by)
+        public DemoQaWebElement(By by)
         {
             By = by;
         }
@@ -72,13 +72,21 @@ namespace Homework13.Common.WebElements
 
         public string GetAttribute(string attributeName) => WebElement.GetAttribute(attributeName);
 
+        public string GetClass() => WebElement.GetAttribute("class");
+
+        public bool IsElementDisabled() => GetClass().Contains("disabled");
+
         public string GetCssValue(string propertyName) => WebElement.GetCssValue(propertyName);
+
+        public string GetColor() => WebElement.GetCssValue("color");
 
         public string GetDomAttribute(string attributeName) => WebElement.GetDomAttribute(attributeName);
 
         public string GetDomProperty(string propertyName) => WebElement.GetDomProperty(propertyName);
 
         public void SendKeys(string text) => WebElement.SendKeys(text);
+
+        public void ClearTextBox() => WebElement.SendKeys(Keys.Control + "a" + Keys.Delete);
 
         public void Submit() => WebElement.Submit();
 

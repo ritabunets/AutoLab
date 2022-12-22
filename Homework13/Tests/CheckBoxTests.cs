@@ -30,7 +30,7 @@ namespace Homework13.Tests
                 Assert.IsFalse(homeCheckboxSelected);
                 Assert.IsTrue(desktopCheckboxSelected);
                 Assert.AreEqual(greenColor, GenericPages.CheckBoxPage.GetSelectedCheckBoxNameColor());
-                Assert.AreEqual(messageDesktopIsSelected, GenericPages.CheckBoxPage.GetTextOfCollectionElements());
+                Assert.AreEqual(messageDesktopIsSelected, GenericPages.CheckBoxPage.GetTextOfResultMessage());
             });
         }
 
@@ -38,13 +38,14 @@ namespace Homework13.Tests
         [Test]
         public void SelectAllCheckBoxes()
         {
-            const string messagePartWithAllSelectedItems = "You have selected : home desktop notes commands documents workspace react angular veu office public private classified general downloads wordFile excelFile ";
+            const string messagePartWithAllSelectedItems = "You have selected : home desktop notes commands documents workspace " +
+                "react angular veu office public private classified general downloads wordFile excelFile ";
 
             GenericPages.CheckBoxPage.ClickHomeItem();
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(17, GenericPages.CheckBoxPage.GetNumberOfSelectedMenuItems());
-                Assert.AreEqual(messagePartWithAllSelectedItems, GenericPages.CheckBoxPage.GetTextOfCollectionElements());
+                Assert.AreEqual(messagePartWithAllSelectedItems, GenericPages.CheckBoxPage.GetTextOfResultMessage());
             });
 
             // Postcondition: return to original state.

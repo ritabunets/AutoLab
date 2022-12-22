@@ -7,14 +7,14 @@ namespace Homework13.PageObjects
 {
     public class CheckBoxPage
     {
-        private MyWebElement _toogle = new(By.XPath("//button[@title='Toggle']"));
-        private MyWebElement _homeCheckbox = new(By.XPath("//*[@id='tree-node-home']"));
-        private MyWebElement _homeItem = new(By.XPath("//span[@class='rct-checkbox']"));
-        private MyWebElement _desktopCheckbox = new(By.XPath("//*[@id='tree-node-desktop']"));
-        private MyWebElement _desktopItem = new(By.XPath("//label[@for='tree-node-desktop']/span"));
-        private MyWebElement _selectedCheckBoxName = new(By.XPath("//span[@class='text-success']"));
-        private MyWebElement _expandAllButton = new(By.XPath("//button[@title='Expand all']"));
-        private MyWebElement _collapseAllButton = new(By.XPath("//button[@title='Collapse all']"));
+        private DemoQaWebElement _toogle = new(By.XPath("//button[@title='Toggle']"));
+        private DemoQaWebElement _homeCheckbox = new(By.XPath("//*[@id='tree-node-home']"));
+        private DemoQaWebElement _homeItem = new(By.XPath("//span[@class='rct-checkbox']"));
+        private DemoQaWebElement _desktopCheckbox = new(By.XPath("//*[@id='tree-node-desktop']"));
+        private DemoQaWebElement _desktopItem = new(By.XPath("//label[@for='tree-node-desktop']/span"));
+        private DemoQaWebElement _selectedCheckBoxName = new(By.XPath("//span[@class='text-success']"));
+        private DemoQaWebElement _expandAllButton = new(By.XPath("//button[@title='Expand all']"));
+        private DemoQaWebElement _collapseAllButton = new(By.XPath("//button[@title='Collapse all']"));
 
         public void ClickToogle() => _toogle.Click();
 
@@ -26,16 +26,9 @@ namespace Homework13.PageObjects
 
         public void ClickDesktopItem() => _desktopItem.Click();
 
-        public ReadOnlyCollection<IWebElement> GetSelectedItems()
-        {
-            var selectedItems = _homeItem.FindElements(By.XPath("//div[@id='result']/span"));
+        public string GetSelectedCheckBoxNameColor() => _selectedCheckBoxName.GetColor();
 
-            return selectedItems;
-        }
-
-        public string GetSelectedCheckBoxNameColor() => _selectedCheckBoxName.GetCssValue("color");
-
-        public string GetTextOfCollectionElements()
+        public string GetTextOfResultMessage()
         {
             var stringBuilder = new StringBuilder();
             for (int i = 0; i < GetSelectedItems().Count; i++)
@@ -44,6 +37,7 @@ namespace Homework13.PageObjects
                 string text = element.Text;
                 stringBuilder.Append($"{text} ");
             }
+
             var finalString = stringBuilder.ToString();
 
             return finalString;
@@ -66,5 +60,12 @@ namespace Homework13.PageObjects
         public bool IsHomeCheckboxSelected() => _homeCheckbox.Selected;
 
         public bool IsDesktopCheckboxSelected() => _desktopCheckbox.Selected;
+
+        private ReadOnlyCollection<IWebElement> GetSelectedItems()
+        {
+            var selectedItems = _homeItem.FindElements(By.XPath("//div[@id='result']/span"));
+
+            return selectedItems;
+        }
     }
 }

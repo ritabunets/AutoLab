@@ -5,12 +5,12 @@ namespace Homework13.PageObjects
 {
     public class ButtonPage
     {
-        private MyWebElement _doubleClickButton = new(By.XPath("//button[@id='doubleClickBtn']"));
-        private MyWebElement _messageForDoubleClickAction = new(By.XPath("//p[@id='doubleClickMessage']"));
-        private MyWebElement _rightClickButton = new(By.XPath("//button[@id='rightClickBtn']"));
-        private MyWebElement _messageForRightClickAction = new(By.XPath("//p[@id='rightClickMessage']"));
-        private MyWebElement _dynamicClickButton = new(By.XPath("//button[text()='Click Me']"));
-        private MyWebElement _messageForDynamicClickAction = new(By.XPath("//p[@id='dynamicClickMessage']"));
+        private DemoQaWebElement _doubleClickButton = new(By.XPath("//button[@id='doubleClickBtn']"));
+        private DemoQaWebElement _messageForDoubleClickAction = new(By.XPath("//p[@id='doubleClickMessage']"));
+        private DemoQaWebElement _rightClickButton = new(By.XPath("//button[@id='rightClickBtn']"));
+        private DemoQaWebElement _messageForRightClickAction = new(By.XPath("//p[@id='rightClickMessage']"));
+        private DemoQaWebElement _dynamicClickButton = new(By.XPath("//button[text()='Click Me']"));
+        private DemoQaWebElement _messageForDynamicClickAction = new(By.XPath("//p[@id='dynamicClickMessage']"));
 
         public string GetMessageTextForDoubleClick() => _messageForDoubleClickAction.Text;
 

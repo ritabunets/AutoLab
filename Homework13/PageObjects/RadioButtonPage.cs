@@ -6,40 +6,38 @@ namespace Homework13.PageObjects
 {
     public class RadioButtonPage
     {
-        private MyWebElement _radioButton = new(By.XPath("//input[@type='radio']"));
-        private MyWebElement _selectedRadioButtonName = new(By.XPath("//span[@class='text-success']"));
-        private MyWebElement _selectedMessage = new(By.XPath("//p[@class='mt-3']"));
+        private DemoQaWebElement _ridioButtonsArea = new(By.XPath("//div[@class='col-12 mt-4 col-md-6']"));
+        private DemoQaWebElement _noRadioButton = new(By.XPath("//input[@id='noRadio']"));
+        private DemoQaWebElement _selectedRadioButtonName = new(By.XPath("//span[@class='text-success']"));
+        private DemoQaWebElement _selectedMessage = new(By.XPath("//p[@class='mt-3']"));
 
-        public string GetSelectedRadioButtonNameColor() => _selectedRadioButtonName.GetCssValue("color");
+        public string GetSelectedRadioButtonNameColor() => _selectedRadioButtonName.GetColor();
 
         public string GetSelectedMessageText() => _selectedMessage.Text;
 
         public int GetAllRadioButtonsCount()
         {
-            var allRadioButtons = _radioButton.FindElements(By.XPath("//input[@type='radio']"));
+            var allRadioButtons = _ridioButtonsArea.FindElements(By.XPath(".//child::input"));
 
             return allRadioButtons.Count;
         }
 
         public ReadOnlyCollection<IWebElement> GetAvailableRadioButtonLables()
         {
-            var availableRadioButtonLabels = _radioButton.FindElements(By.XPath("//label[not(contains(@class, ('disabled')))]"));
+            var availableRadioButtonLabels = _ridioButtonsArea.FindElements(By.XPath(".//label[not(contains(@class, ('disabled')))]"));
 
             return availableRadioButtonLabels;
         }
 
         public ReadOnlyCollection<IWebElement> GetAvailableRadioButtons()
         {
-            var availableRadioButtons = _radioButton.FindElements(By.XPath("//input[not(contains(@class, ('disabled')))]"));
+            var availableRadioButtons = _ridioButtonsArea.FindElements(By.XPath(".//input[not(contains(@class, ('disabled')))]"));
 
             return availableRadioButtons;
         }
 
-        public int GetDisabledRadioButtonsCount()
-        {
-            var disabledRadioButtons = _radioButton.FindElements(By.XPath("//input[contains(@class, ('disabled'))]"));
+        public bool IsNoRadioButtonDisabled() => _noRadioButton.IsElementDisabled();
 
-            return disabledRadioButtons.Count;
-        }
+        public void ClickOnRadioButton(IWebElement element) => element.Click();
     }
 }

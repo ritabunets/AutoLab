@@ -23,5 +23,22 @@ namespace Homework13.Common.Extensions
         public static void SwitchToOriginalWindow(this IWebDriver driver) => driver.SwitchTo().Window(driver.WindowHandles.First());
 
         public static string GetNewWindowUrl(this IWebDriver driver) => driver.SwitchTo().Window(driver.WindowHandles.Last()).Url;
+
+        public static void CloseAllWindowsExceptFirst(this IWebDriver driver)
+        {
+            var windows = driver.WindowHandles;
+            if (windows.Count > 1)
+            {
+                var indexOfLastWindow = windows.Count - 1;
+                while (indexOfLastWindow != 0)
+                {
+                    driver.SwitchTo().Window(driver.WindowHandles[indexOfLastWindow]);
+                    driver.Close();
+                    indexOfLastWindow -= 1;
+                }
+
+                SwitchToOriginalWindow(driver);
+            }
+        }
     }
 }

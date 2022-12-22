@@ -17,11 +17,10 @@ namespace Homework13.Tests
         public void VerifyAllRadioBattons()
         {
             var allRadioButtonsCount = GenericPages.RadioButtonPage.GetAllRadioButtonsCount();
-            var disabledRadioButtonCount = GenericPages.RadioButtonPage.GetDisabledRadioButtonsCount();
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(3, allRadioButtonsCount);
-                Assert.AreEqual(1, disabledRadioButtonCount);
+                Assert.IsTrue(GenericPages.RadioButtonPage.IsNoRadioButtonDisabled());
             });
         }
 
@@ -37,7 +36,7 @@ namespace Homework13.Tests
             {
                 var currentRadioButtonLabel = GenericPages.RadioButtonPage.GetAvailableRadioButtonLables()[i];
                 var currentRadioButton = GenericPages.RadioButtonPage.GetAvailableRadioButtons()[i];
-                currentRadioButtonLabel.Click();
+                GenericPages.RadioButtonPage.ClickOnRadioButton(currentRadioButtonLabel);
                 var expectedMessage = messageDefaultText + " " + currentRadioButtonLabel.Text;
                 Assert.Multiple(() =>
                 {

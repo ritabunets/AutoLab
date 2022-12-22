@@ -1,27 +1,29 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
 using System.Text;
 using Homework13.Common.WebElements;
 using OpenQA.Selenium;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Homework13.PageObjects
 {
     public class WebTablePage
     {
-        private MyWebElement _addNewEntryButton = new(By.XPath("//button[@id='addNewRecordButton']"));
-        private MyWebElement _submitButton = new(By.XPath("//button[@id='submit']"));
-        private MyWebElement _form = new(By.XPath("//form"));
-        private MyWebElement _firstName1 = new(By.XPath("((//div[@role='rowgroup'])[1]//descendant::div[@role='gridcell'])[1]"));
-        private MyWebElement _row = new(By.XPath("//div[@role='rowgroup']"));
-        private MyWebElement _searchInput = new(By.XPath("//input[@id='searchBox']"));
-        private MyWebElement _firstNameInput = new(By.XPath("//input[@id='firstName']"));
-        private MyWebElement _lastNameInput = new(By.XPath("//input[@id='lastName']"));
-        private MyWebElement _emailInput = new(By.XPath("//input[@id='userEmail']"));
-        private MyWebElement _ageInput = new(By.XPath("//input[@id='age']"));
-        private MyWebElement _salaryInput = new(By.XPath("//input[@id='salary']"));
-        private MyWebElement _departmentInput = new(By.XPath("//input[@id='department']"));
-        private MyWebElement _editButton = new(By.XPath("//span[@title='Edit']"));
-        private MyWebElement _deleteButton = new(By.XPath("//span[@id='delete-record-1']"));
-        private MyWebElement _closeButton = new(By.XPath("//span[contains(text(),'×')]"));
+        private DemoQaWebElement _addNewEntryButton = new(By.XPath("//button[@id='addNewRecordButton']"));
+        private DemoQaWebElement _submitButton = new(By.XPath("//button[@id='submit']"));
+        private DemoQaWebElement _form = new(By.XPath("//form"));
+        private DemoQaWebElement _firstName1 = new(By.XPath("((//div[@role='rowgroup'])[1]//descendant::div[@role='gridcell'])[1]"));
+        private DemoQaWebElement _tableRows = new(By.XPath("//div[@class='rt-tbody']"));
+        private DemoQaWebElement _searchTextBox = new(By.XPath("//input[@id='searchBox']"));
+        private DemoQaWebElement _firstNameTextBox = new(By.XPath("//input[@id='firstName']"));
+        private DemoQaWebElement _lastNameTextBox = new(By.XPath("//input[@id='lastName']"));
+        private DemoQaWebElement _emailTextBox = new(By.XPath("//input[@id='userEmail']"));
+        private DemoQaWebElement _ageTextBox = new(By.XPath("//input[@id='age']"));
+        private DemoQaWebElement _salaryTextBox = new(By.XPath("//input[@id='salary']"));
+        private DemoQaWebElement _departmentTextBox = new(By.XPath("//input[@id='department']"));
+        private DemoQaWebElement _deleteButton = new(By.XPath("//span[@id='delete-record-1']"));
+        private DemoQaWebElement _closeButton = new(By.XPath("//span[contains(text(),'×')]"));
+
+        public bool IsFormValidated() => _form.GetClass().Contains("was-validated");
 
         public void ClickAddNewEntryButton() => _addNewEntryButton.Click();
 
@@ -29,23 +31,15 @@ namespace Homework13.PageObjects
 
         public void ClickSubmitButton() => _submitButton.Click();
 
-        public void ClickEditEntryButton() => _editButton.Click();
+        public void ClickEditEntryButton(string firstName) => _editButton(firstName).Click();
 
         public void ClickDeleteEntryButton() => _deleteButton.Click();
 
-        public string GetFormClass() => _form.GetAttribute("class");
-
         public string GetFirstName1Value() => _firstName1.Text;
 
-        public ReadOnlyCollection<IWebElement> GetRows()
+        public List<string> GetListOfNotEmptyRows()
         {
-            var rows = _row.FindElements(By.XPath("//div[@role='rowgroup']"));
-
-            return rows;
-        }
-
-        public List<string> GetListOfNotEmptyRows(ReadOnlyCollection<IWebElement> rows)
-        {
+            var rows = _tableRows.FindElements(By.XPath("//div[@role='rowgroup']"));
             List<string> rowsText = new List<string>();
             for (int i = 0; i < rows.Count; i++)
             {
@@ -53,74 +47,61 @@ namespace Homework13.PageObjects
                 {
                     IWebElement element = rows[i];
                     string text = element.Text;
-                    stringBuilder.Append($"{text} ");
+                    stringBuilder.Append($"{text}");
                 }
-                var finalString = stringBuilder.ToString();
-                if (finalString != "        ")
+
+                var finalString = stringBuilder.ToString().Trim();
+                bool isNull = string.IsNullOrEmpty(finalString);
+                if (!isNull)
                 {
                     rowsText.Add(finalString);
                 }
+
             }
 
             return rowsText;
         }
 
-        public int GetCountOfFilteredRows(List<string> rows, string filterValue) => rows.Count(x => x.Contains(filterValue));
+        public int GetCountOfRowsWithValue(string filterValue) => GetListOfNotEmptyRows().Count(x => x.Contains(filterValue));
 
         public int GetCountOfRows(List<string> rows) => rows.Count;
 
-        public string GetTextOfCollectionElements(ReadOnlyCollection<IWebElement> selectedItems)
+        public string GetTextOfElement(int index)
         {
-            var stringBuilder = new StringBuilder();
-            for (int i = 0; i < selectedItems.Count; i++)
-            {
-                IWebElement element = selectedItems[i];
-                string text = element.Text;
-                stringBuilder.Append($"{text} ");
-            }
-            var finalString = stringBuilder.ToString();
+            string text = GetRow(index).Text;
+            var actualString = text.Replace("\r\n", " ");
 
-            return finalString;
+            return actualString;
         }
 
-        public void FillInSearchInput(string value) => _searchInput.SendKeys(value);
+        public void FillInSearchTextBox(string value) => _searchTextBox.SendKeys(value);
 
-        public void FillInFirstNameInput(string value) => _firstNameInput.SendKeys(value);
+        public void FillInFirstNameTextBox(string value) => _firstNameTextBox.SendKeys(value);
 
-        public void FillInLastNameInput(string value) => _lastNameInput.SendKeys(value);
+        public void FillInLastNameTextBox(string value) => _lastNameTextBox.SendKeys(value);
 
-        public void FillInEmailInput(string value) => _emailInput.SendKeys(value);
+        public void FillInEmailTextBox(string value) => _emailTextBox.SendKeys(value);
 
-        public void FillInAgeInput(string value) => _ageInput.SendKeys(value);
+        public void FillInAgeTextBox(string value) => _ageTextBox.SendKeys(value);
 
-        public void FillInSalaryInput(string value) => _salaryInput.SendKeys(value);
+        public void FillInSalaryTextBox(string value) => _salaryTextBox.SendKeys(value);
 
-        public void FillInDepartmentInput(string value) => _departmentInput.SendKeys(value);
+        public void FillInDepartmentTextBox(string value) => _departmentTextBox.SendKeys(value);
 
-        public void ClearFirstNameInput() => _firstNameInput.SendKeys(Keys.Control + "a" + Keys.Delete);
+        public void ClearFirstNameTextBox() => _firstNameTextBox.ClearTextBox();
 
-        public void ClearLastNameInput() => _lastNameInput.SendKeys(Keys.Control + "a" + Keys.Delete);
+        public void ClearLastNameTextBox() => _lastNameTextBox.ClearTextBox();
 
-        public void ClearEmailInput() => _emailInput.SendKeys(Keys.Control + "a" + Keys.Delete);
+        public void ClearEmailTextBox() => _emailTextBox.ClearTextBox();
 
-        public void ClearAgeInput() => _ageInput.SendKeys(Keys.Control + "a" + Keys.Delete);
+        public void ClearAgeTextBox() => _ageTextBox.ClearTextBox();
 
-        public void ClearSalaryInput() => _salaryInput.SendKeys(Keys.Control + "a" + Keys.Delete);
+        public void ClearSalaryTextBox() => _salaryTextBox.ClearTextBox();
 
-        public void ClearDepartmentInput() => _departmentInput.SendKeys(Keys.Control + "a" + Keys.Delete);
+        public void ClearDepartmentTextBox() => _departmentTextBox.ClearTextBox();
 
-        public ReadOnlyCollection<IWebElement> GetNewRow()
-        {
-            var newRow = _row.FindElements(By.XPath("((//div[@role='row'])[5])/div"));
+        private DemoQaWebElement GetRow(int index) => new DemoQaWebElement(By.XPath($"(//div[@role='row'])[{index}]"));
 
-            return newRow;
-        }
-
-        public ReadOnlyCollection<IWebElement> GetEditedRow()
-        {
-            var editedRow = _row.FindElements(By.XPath("((//div[@role='row'])[2])/div"));
-
-            return editedRow;
-        }
+        private DemoQaWebElement _editButton(string firstName) => new DemoQaWebElement(By.XPath($"(//div[contains(text(),'{firstName}')]/ancestor::div[@role='row']//div[@role='gridcell']//span)[1]"));
     }
 }
