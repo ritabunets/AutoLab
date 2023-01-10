@@ -9,6 +9,7 @@ namespace Homework13.Tests
         [SetUp]
         public void SetUp()
         {
+            GenericPages.BaseElementsPage.ClickOnCategoryMenuItem(Categories.Elements);
             GenericPages.BaseElementsPage.ClickOnElementsMenuItem(Elements.RadioButton);
         }
 
@@ -31,16 +32,14 @@ namespace Homework13.Tests
             const string greenColor = "rgba(40, 167, 69, 1)";
             const string messageDefaultText = "You have selected";
 
-            var availableRadioButtonsCount = GenericPages.RadioButtonPage.GetAvailableRadioButtons().Count;
+            var availableRadioButtonsCount = GenericPages.RadioButtonPage.GetAvailableRadioButtonsCount();
             for (int i = 0; i < availableRadioButtonsCount; i++)
             {
-                var currentRadioButtonLabel = GenericPages.RadioButtonPage.GetAvailableRadioButtonLables()[i];
-                var currentRadioButton = GenericPages.RadioButtonPage.GetAvailableRadioButtons()[i];
-                GenericPages.RadioButtonPage.ClickOnRadioButton(currentRadioButtonLabel);
-                var expectedMessage = messageDefaultText + " " + currentRadioButtonLabel.Text;
+                var expectedMessage = messageDefaultText + " " + GenericPages.RadioButtonPage.GetSelectedRadioButtonName(i);
+                GenericPages.RadioButtonPage.ClickOnAvailableRadioButton(i);
                 Assert.Multiple(() =>
                 {
-                    Assert.True(currentRadioButton.Selected);
+                    Assert.True(GenericPages.RadioButtonPage.isRadioButtonSelected(i));
                     Assert.AreEqual(expectedMessage, GenericPages.RadioButtonPage.GetSelectedMessageText());
                     Assert.AreEqual(greenColor, GenericPages.RadioButtonPage.GetSelectedRadioButtonNameColor());
                 });

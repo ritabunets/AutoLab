@@ -1,41 +1,25 @@
-﻿using System;
+﻿using System.Collections.ObjectModel;
 using System.Text;
 using Homework13.Common.WebElements;
 using OpenQA.Selenium;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Homework13.PageObjects
 {
     public class WebTablePage
     {
         private DemoQaWebElement _addNewEntryButton = new(By.XPath("//button[@id='addNewRecordButton']"));
-        private DemoQaWebElement _submitButton = new(By.XPath("//button[@id='submit']"));
         private DemoQaWebElement _form = new(By.XPath("//form"));
-        private DemoQaWebElement _firstName1 = new(By.XPath("((//div[@role='rowgroup'])[1]//descendant::div[@role='gridcell'])[1]"));
+        private DemoQaWebElement _header = new(By.XPath("(//div[@role='row'])[1]"));
         private DemoQaWebElement _tableRows = new(By.XPath("//div[@class='rt-tbody']"));
         private DemoQaWebElement _searchTextBox = new(By.XPath("//input[@id='searchBox']"));
-        private DemoQaWebElement _firstNameTextBox = new(By.XPath("//input[@id='firstName']"));
-        private DemoQaWebElement _lastNameTextBox = new(By.XPath("//input[@id='lastName']"));
-        private DemoQaWebElement _emailTextBox = new(By.XPath("//input[@id='userEmail']"));
-        private DemoQaWebElement _ageTextBox = new(By.XPath("//input[@id='age']"));
-        private DemoQaWebElement _salaryTextBox = new(By.XPath("//input[@id='salary']"));
-        private DemoQaWebElement _departmentTextBox = new(By.XPath("//input[@id='department']"));
-        private DemoQaWebElement _deleteButton = new(By.XPath("//span[@id='delete-record-1']"));
-        private DemoQaWebElement _closeButton = new(By.XPath("//span[contains(text(),'×')]"));
 
         public bool IsFormValidated() => _form.GetClass().Contains("was-validated");
 
         public void ClickAddNewEntryButton() => _addNewEntryButton.Click();
 
-        public void ClickCloseButton() => _closeButton.Click();
+        public void ClickEditEntryButton(string firstName) => GetEditButton(firstName).Click();
 
-        public void ClickSubmitButton() => _submitButton.Click();
-
-        public void ClickEditEntryButton(string firstName) => _editButton(firstName).Click();
-
-        public void ClickDeleteEntryButton() => _deleteButton.Click();
-
-        public string GetFirstName1Value() => _firstName1.Text;
+        public void ClickDeleteButton(string firstName) => GetDeleteButton(firstName).Click();
 
         public List<string> GetListOfNotEmptyRows()
         {
@@ -56,7 +40,6 @@ namespace Homework13.PageObjects
                 {
                     rowsText.Add(finalString);
                 }
-
             }
 
             return rowsText;
@@ -64,9 +47,7 @@ namespace Homework13.PageObjects
 
         public int GetCountOfRowsWithValue(string filterValue) => GetListOfNotEmptyRows().Count(x => x.Contains(filterValue));
 
-        public int GetCountOfRows(List<string> rows) => rows.Count;
-
-        public string GetTextOfElement(int index)
+        public string GetTextOfTableRow(int index)
         {
             string text = GetRow(index).Text;
             var actualString = text.Replace("\r\n", " ");
@@ -76,32 +57,37 @@ namespace Homework13.PageObjects
 
         public void FillInSearchTextBox(string value) => _searchTextBox.SendKeys(value);
 
-        public void FillInFirstNameTextBox(string value) => _firstNameTextBox.SendKeys(value);
+        public string GetFieldValue(string columnName, int rowIndex)
+        {
+            int columnIndex = GetColumnIndex(columnName);
+            string fieldValue = GetField(rowIndex, columnIndex).Text;
+            return fieldValue;
+        }
 
-        public void FillInLastNameTextBox(string value) => _lastNameTextBox.SendKeys(value);
+        private int GetColumnIndex(string columnName)
+        {
+            ReadOnlyCollection<IWebElement> columnHeaders = _header.FindElements(By.XPath(".//div[@role='columnheader']"));
+            List<string> listOfColumnHeaders = new List<string>();
+            for (int i = 0; i < columnHeaders.Count; i++)
+            {
+                string columnHeader = columnHeaders[i].Text;
+                listOfColumnHeaders.Add(columnHeader);
+            }
 
-        public void FillInEmailTextBox(string value) => _emailTextBox.SendKeys(value);
+            int columnIndex = listOfColumnHeaders.FindIndex(x => x.Equals(columnName));
 
-        public void FillInAgeTextBox(string value) => _ageTextBox.SendKeys(value);
+            return columnIndex;
+        }
 
-        public void FillInSalaryTextBox(string value) => _salaryTextBox.SendKeys(value);
+        private DemoQaWebElement GetField(int rowIndex, int columnIndex) => new DemoQaWebElement(By.XPath($"((//div[@role='rowgroup'])['{rowIndex}']" +
+            $"//div[@role='gridcell'])['{columnIndex}']"));
 
-        public void FillInDepartmentTextBox(string value) => _departmentTextBox.SendKeys(value);
+        private DemoQaWebElement GetRow(int index) => new DemoQaWebElement(By.XPath($"(//div[@role='rowgroup'])[{index}]"));
 
-        public void ClearFirstNameTextBox() => _firstNameTextBox.ClearTextBox();
+        private DemoQaWebElement GetEditButton(string firstName) => new DemoQaWebElement(By.XPath($"(//div[contains(text(),'{firstName}')]" +
+            $"/ancestor::div[@role='row']//div[@role='gridcell']//span)[1]"));
 
-        public void ClearLastNameTextBox() => _lastNameTextBox.ClearTextBox();
-
-        public void ClearEmailTextBox() => _emailTextBox.ClearTextBox();
-
-        public void ClearAgeTextBox() => _ageTextBox.ClearTextBox();
-
-        public void ClearSalaryTextBox() => _salaryTextBox.ClearTextBox();
-
-        public void ClearDepartmentTextBox() => _departmentTextBox.ClearTextBox();
-
-        private DemoQaWebElement GetRow(int index) => new DemoQaWebElement(By.XPath($"(//div[@role='row'])[{index}]"));
-
-        private DemoQaWebElement _editButton(string firstName) => new DemoQaWebElement(By.XPath($"(//div[contains(text(),'{firstName}')]/ancestor::div[@role='row']//div[@role='gridcell']//span)[1]"));
+        private DemoQaWebElement GetDeleteButton(string firstName) => new DemoQaWebElement(By.XPath($"(//div[contains(text(),'{firstName}')]" +
+            $"/ancestor::div[@role='row']//div[@role='gridcell']//span)[2]"));
     }
 }

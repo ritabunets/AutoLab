@@ -9,6 +9,7 @@ namespace Homework13.Tests
         [SetUp]
         public void SetUp()
         {
+            GenericPages.BaseElementsPage.ClickOnCategoryMenuItem(Categories.Elements);
             GenericPages.BaseElementsPage.ClickOnElementsMenuItem(Elements.Buttons);
         }
 

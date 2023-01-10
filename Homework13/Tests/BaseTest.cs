@@ -3,20 +3,19 @@ using Homework13.Data;
 using Homework13.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
 
 namespace Homework13.Tests
 {
     public class BaseTest
     {
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
-            WebDriverFactory.Driver.Navigate().GoToUrl(TestSettings.ElementsPageUrl);
+            WebDriverFactory.Driver.Navigate().GoToUrl(TestSettings.HomePage);
         }
 
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+        [TearDown]
+        public void TearDown()
         {
             if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Passed)
             {

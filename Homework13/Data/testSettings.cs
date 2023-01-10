@@ -8,7 +8,7 @@ namespace Homework13.Data
         public static Browsers Browser { get; set; }
         public static string HomePage { get; set; }
         public static string ElementsPageUrl { get; set; }
-        public static IConfiguration TestConfiguration { get; } = new ConfigurationBuilder().AddJsonFile(".\\Tests\\TestSettings.json").Build();
+        public static IConfiguration TestConfiguration { get; } = new ConfigurationBuilder().AddJsonFile(".\\Tests\\testSettings.json").Build();
 
         static TestSettings()
         {

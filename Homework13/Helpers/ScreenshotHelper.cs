@@ -15,7 +15,7 @@ namespace Homework13.Helpers
                 Directory.CreateDirectory(screenshotDirectory);
             }
 
-            string filePath = $"{screenshotDirectory}\\{DateTime.Now.ToString("yyyyMMdd_HHmm_")}_" + $"{TestContext.CurrentContext.Test.Name}.png";
+            string filePath = $"{screenshotDirectory}\\{DateTime.Now.ToString("yyyyMMdd_HHmm_")}_{TestContext.CurrentContext.Test.Name}.png";
             screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Png);
 
             return filePath;

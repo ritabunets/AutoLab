@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Homework13.Common.WebElements;
+﻿using Homework13.Common.WebElements;
 using OpenQA.Selenium;
 
 namespace Homework13.PageObjects
@@ -15,6 +14,22 @@ namespace Homework13.PageObjects
 
         public string GetSelectedMessageText() => _selectedMessage.Text;
 
+        public string GetSelectedRadioButtonName(int index)
+        {
+                var availableRadioButton = _ridioButtonsArea.FindElements(By.XPath(".//label[not(contains(@class, ('disabled')))]"));
+                string selectedRadioButtonName = availableRadioButton[index].Text;
+
+                return selectedRadioButtonName;
+        }
+
+        public bool isRadioButtonSelected(int index)
+        {
+            var availableRadioButton = _ridioButtonsArea.FindElements(By.XPath(".//input[not(contains(@class, ('disabled')))]"));
+            bool isRadioButtonSelected = availableRadioButton[index].Selected;
+
+            return isRadioButtonSelected;
+        }
+
         public int GetAllRadioButtonsCount()
         {
             var allRadioButtons = _ridioButtonsArea.FindElements(By.XPath(".//child::input"));
@@ -22,22 +37,19 @@ namespace Homework13.PageObjects
             return allRadioButtons.Count;
         }
 
-        public ReadOnlyCollection<IWebElement> GetAvailableRadioButtonLables()
-        {
-            var availableRadioButtonLabels = _ridioButtonsArea.FindElements(By.XPath(".//label[not(contains(@class, ('disabled')))]"));
-
-            return availableRadioButtonLabels;
-        }
-
-        public ReadOnlyCollection<IWebElement> GetAvailableRadioButtons()
+        public int GetAvailableRadioButtonsCount()
         {
             var availableRadioButtons = _ridioButtonsArea.FindElements(By.XPath(".//input[not(contains(@class, ('disabled')))]"));
 
-            return availableRadioButtons;
+            return availableRadioButtons.Count;
         }
 
         public bool IsNoRadioButtonDisabled() => _noRadioButton.IsElementDisabled();
 
-        public void ClickOnRadioButton(IWebElement element) => element.Click();
+        public void ClickOnAvailableRadioButton(int index)
+        {
+            var availableRadioButtonLabel = _ridioButtonsArea.FindElements(By.XPath(".//label[not(contains(@class, ('disabled')))]"));
+            availableRadioButtonLabel[index].Click();
+        }
     }
 }
