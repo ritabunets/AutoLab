@@ -15,7 +15,7 @@ namespace Homework13.Tests
 
         // Test1: Check Double click button.
         [Test]
-        public void VerifyDoubleClickBatton()
+        public void VerifyDoubleClickButton()
         {
             const string expectedDoubleClickButtonName = "Double Click Me";
             const string expectedMessageForDoubleClick = "You have done a double click";
@@ -30,7 +30,7 @@ namespace Homework13.Tests
 
         // Test2: Check Right click button.
         [Test]
-        public void VerifyRightClickBatton()
+        public void VerifyRightClickButton()
         {
             const string expectedDoubleClickButtonName = "Right Click Me";
             const string expectedMessageForRightClick = "You have done a right click";
@@ -45,7 +45,7 @@ namespace Homework13.Tests
 
         // Test3: Check Dynamic click button.
         [Test]
-        public void VerifyDynamicClickBatton()
+        public void VerifyDynamicClickButton()
         {
             const string expectedDynamicButtonName = "Click Me";
             const string expectedMessageForDynamicClick = "You have done a dynamic click";

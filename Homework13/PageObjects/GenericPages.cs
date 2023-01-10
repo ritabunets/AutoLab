@@ -14,8 +14,6 @@
 
         public static LinkPage LinkPage => GetPage<LinkPage>();
 
-        public static Popup Popup => GetPage<Popup>();
-
         private static T GetPage<T>() where T : new() => new T();
     }
 }

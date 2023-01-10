@@ -61,6 +61,7 @@ namespace Homework13.PageObjects
         {
             int columnIndex = GetColumnIndex(columnName);
             string fieldValue = GetField(rowIndex, columnIndex).Text;
+
             return fieldValue;
         }
 

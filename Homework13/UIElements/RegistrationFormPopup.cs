@@ -1,9 +1,9 @@
 ﻿using Homework13.Common.WebElements;
 using OpenQA.Selenium;
 
-namespace Homework13.PageObjects
+namespace Homework13.UIElements
 {
-    public class Popup
+    public class RegistrationFormPopup
     {
         private DemoQaWebElement _firstNameTextBox = new(By.XPath("//input[@id='firstName']"));
         private DemoQaWebElement _lastNameTextBox = new(By.XPath("//input[@id='lastName']"));

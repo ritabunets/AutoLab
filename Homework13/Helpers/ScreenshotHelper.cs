@@ -8,7 +8,7 @@ namespace Homework13.Helpers
     {
         public static string TakeScreenshot(IWebDriver driver)
         {
-            Screenshot screenshot = ((ITakesScreenshot)WebDriverFactory.Driver).GetScreenshot();
+            Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
             var screenshotDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}\\Screenshots";
             if (!Directory.Exists(screenshotDirectory))
             {

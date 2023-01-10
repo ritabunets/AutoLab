@@ -1,6 +1,7 @@
 ﻿using Homework13.Data.Constants;
 using Homework13.Helpers;
 using Homework13.PageObjects;
+using Homework13.UIElements;
 using NUnit.Framework;
 
 namespace Homework13.Tests
@@ -27,11 +28,11 @@ namespace Homework13.Tests
         public void CheckValidation()
         {
             GenericPages.WebTablePage.ClickAddNewEntryButton();
-            GenericPages.Popup.SubmitForm();
+            GenericElements.Popup.SubmitForm();
             Assert.IsTrue(GenericPages.WebTablePage.IsFormValidated());
 
             // Postcondition: return to original state.
-            GenericPages.Popup.CloseForm();
+            GenericElements.Popup.CloseForm();
         }
 
         // Test2: Search an entry.
@@ -82,8 +83,8 @@ namespace Homework13.Tests
             var indexOfNewEntryRow = numberOfExistingRows + 1;
 
             // Fill in form inputs.
-            GenericPages.Popup.FillInFormTextBoxes(_firstName, _lastName, _email, _age, _salary, _department);
-            GenericPages.Popup.SubmitForm();
+            GenericElements.Popup.FillInFormTextBoxes(_firstName, _lastName, _email, _age, _salary, _department);
+            GenericElements.Popup.SubmitForm();
 
             // Get text of new entry and compare it with expected.
             var entryValue = $"{_firstName} {_lastName} {_age} {_email} {_salary} {_department}";
@@ -99,11 +100,11 @@ namespace Homework13.Tests
             GenericPages.WebTablePage.ClickEditEntryButton(firstName);
 
             // Clear form inputs.
-            GenericPages.Popup.ClearFormTextBoxes();
+            GenericElements.Popup.ClearFormTextBoxes();
 
             // Fill in form inputs.
-            GenericPages.Popup.FillInFormTextBoxes(_firstName, _lastName, _email, _age, _salary, _department);
-            GenericPages.Popup.SubmitForm();
+            GenericElements.Popup.FillInFormTextBoxes(_firstName, _lastName, _email, _age, _salary, _department);
+            GenericElements.Popup.SubmitForm();
 
             // Get text of updated entry and compare it with expected.
             var entryValue = $"{_firstName} {_lastName} {_age} {_email} {_salary} {_department}";

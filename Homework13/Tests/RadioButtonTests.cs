@@ -15,7 +15,7 @@ namespace Homework13.Tests
 
         // Test1: Verify all radio buttons.
         [Test]
-        public void VerifyAllRadioBattons()
+        public void VerifyAllRadioButtons()
         {
             var allRadioButtonsCount = GenericPages.RadioButtonPage.GetAllRadioButtonsCount();
             Assert.Multiple(() =>
@@ -39,7 +39,7 @@ namespace Homework13.Tests
                 GenericPages.RadioButtonPage.ClickOnAvailableRadioButton(i);
                 Assert.Multiple(() =>
                 {
-                    Assert.True(GenericPages.RadioButtonPage.isRadioButtonSelected(i));
+                    Assert.True(GenericPages.RadioButtonPage.IsRadioButtonSelected(i));
                     Assert.AreEqual(expectedMessage, GenericPages.RadioButtonPage.GetSelectedMessageText());
                     Assert.AreEqual(greenColor, GenericPages.RadioButtonPage.GetSelectedRadioButtonNameColor());
                 });

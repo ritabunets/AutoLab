@@ -22,7 +22,7 @@ namespace Homework13.PageObjects
                 return selectedRadioButtonName;
         }
 
-        public bool isRadioButtonSelected(int index)
+        public bool IsRadioButtonSelected(int index)
         {
             var availableRadioButton = _ridioButtonsArea.FindElements(By.XPath(".//input[not(contains(@class, ('disabled')))]"));
             bool isRadioButtonSelected = availableRadioButton[index].Selected;
