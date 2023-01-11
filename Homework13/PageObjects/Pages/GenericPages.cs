@@ -1,4 +1,4 @@
-﻿namespace Homework13.PageObjects
+﻿namespace Homework13.PageObjects.Pages
 {
     public static class GenericPages
     {

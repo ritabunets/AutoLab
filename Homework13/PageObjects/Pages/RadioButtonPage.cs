@@ -1,7 +1,7 @@
 ﻿using Homework13.Common.WebElements;
 using OpenQA.Selenium;
 
-namespace Homework13.PageObjects
+namespace Homework13.PageObjects.Pages
 {
     public class RadioButtonPage
     {
@@ -14,12 +14,12 @@ namespace Homework13.PageObjects
 
         public string GetSelectedMessageText() => _selectedMessage.Text;
 
-        public string GetSelectedRadioButtonName(int index)
+        public string GetSelectedRadioButtonName(int i)
         {
-                var availableRadioButton = _ridioButtonsArea.FindElements(By.XPath(".//label[not(contains(@class, ('disabled')))]"));
-                string selectedRadioButtonName = availableRadioButton[index].Text;
+            var availableRadioButton = _ridioButtonsArea.FindElements(By.XPath(".//label[not(contains(@class, ('disabled')))]"));
+            string selectedRadioButtonName = availableRadioButton[i].Text;
 
-                return selectedRadioButtonName;
+            return selectedRadioButtonName;
         }
 
         public bool IsRadioButtonSelected(int index)

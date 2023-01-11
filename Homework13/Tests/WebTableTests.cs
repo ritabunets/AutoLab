@@ -1,6 +1,6 @@
 ﻿using Homework13.Data.Constants;
 using Homework13.Helpers;
-using Homework13.PageObjects;
+using Homework13.PageObjects.Pages;
 using Homework13.UIElements;
 using NUnit.Framework;
 

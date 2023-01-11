@@ -3,7 +3,7 @@ using System.Text;
 using Homework13.Common.WebElements;
 using OpenQA.Selenium;
 
-namespace Homework13.PageObjects
+namespace Homework13.PageObjects.Pages
 {
     public class WebTablePage
     {

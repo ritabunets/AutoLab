@@ -1,7 +1,7 @@
 ﻿using Homework13.Common.Drivers;
 using Homework13.Common.Extensions;
 using Homework13.Data.Constants;
-using Homework13.PageObjects;
+using Homework13.PageObjects.Pages;
 using NUnit.Framework;
 
 namespace Homework13.Tests
