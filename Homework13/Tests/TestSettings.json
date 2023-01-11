@@ -1,0 +1,9 @@
+{
+  "Common": {
+    "Browser": "Chrome"
+  },
+  "Pages": {
+    "HomePage": "https://demoqa.com/",
+    "ElementsPageUrl": "https://demoqa.com/elements"
+  }
+}
