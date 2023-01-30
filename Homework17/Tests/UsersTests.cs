@@ -4,7 +4,7 @@ using Homework17.Services;
 using NUnit.Framework;
 using System.Net;
 
-namespace Homework17
+namespace Homework17.Tests
 {
     public class UsersTests
     {
@@ -34,7 +34,7 @@ namespace Homework17
             var numberOfPages = response.ResponseModel.Total_pages;
 
             // Verify if there is a random name in the list.
-            for (int i = 1; i < numberOfPages+1; i++)
+            for (int i = 1; i < numberOfPages + 1; i++)
             {
                 var responsePerPage = RequestsService.GetUsersListOnSetPage(i).ResponseModel.Data.ToArray();
                 var listOfFirstNames = responsePerPage.Select(x => x.First_name).ToList();
@@ -75,7 +75,7 @@ namespace Homework17
             var name = RandomHelper.GetRandomString(5);
             var job = RandomHelper.GetRandomString(5);
             var userToUpdate = new UserToCreate(name, job);
-            var response = RequestsService.UpdateUser(userToUpdate,1);
+            var response = RequestsService.UpdateUser(userToUpdate, 1);
             var updatedAt = response.ResponseModel.UpdatedAt.ToString(DateTimeFormat);
             var expectedUpdatedAt = DateTime.UtcNow.ToString(DateTimeFormat);
             Assert.Multiple(() =>
