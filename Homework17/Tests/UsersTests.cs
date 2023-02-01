@@ -2,7 +2,6 @@
 using Homework17.Models.JsonModels;
 using Homework17.Services;
 using NUnit.Framework;
-using System.Net;
 
 namespace Homework17.Tests
 {
@@ -19,7 +18,6 @@ namespace Homework17.Tests
             var response = RequestsService.GetUsersList();
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
                 Assert.AreEqual(200, (int)response.StatusCode);
                 Assert.AreEqual(expectedTotalUsers, response.ResponseModel.Total);
             });
@@ -41,7 +39,6 @@ namespace Homework17.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.IsFalse(listOfFirstNames.Contains(randomFirstName));
-                    Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
                     Assert.AreEqual(200, (int)response.StatusCode);
                 });
             }
@@ -59,7 +56,6 @@ namespace Homework17.Tests
             var expectedCreatedAt = DateTime.UtcNow.ToString(DateTimeFormat);
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
                 Assert.AreEqual(201, (int)response.StatusCode);
                 Assert.AreEqual(name, response.ResponseModel.Name);
                 Assert.AreEqual(job, response.ResponseModel.Job);
@@ -80,7 +76,6 @@ namespace Homework17.Tests
             var expectedUpdatedAt = DateTime.UtcNow.ToString(DateTimeFormat);
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
                 Assert.AreEqual(200, (int)response.StatusCode);
                 Assert.AreEqual(name, response.ResponseModel.Name);
                 Assert.AreEqual(job, response.ResponseModel.Job);
@@ -96,7 +91,6 @@ namespace Homework17.Tests
             var response = RequestsService.DeleteUser(id);
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
                 Assert.AreEqual(204, (int)response.StatusCode);
             });
         }
