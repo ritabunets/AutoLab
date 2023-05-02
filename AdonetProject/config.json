@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "LocalAdonetDb": "Server=(localdb)\\mssqllocaldb;Database=AdonetDb;Trusted_Connection=True;TrustServerCertificate=True;",
+    "LocalMasterDb": "Server=(localdb)\\mssqllocaldb;Database=master;Trusted_Connection=True;TrustServerCertificate=True;"
+  }
+}

@@ -33,7 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework11", "Homework11\Ho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework13", "Homework13\Homework13.csproj", "{DA7B139F-FDBE-471D-8F40-C9B9FE67372A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework17", "Homework17\Homework17.csproj", "{94C662E4-36AA-450B-8224-8565E4A3C3BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework17", "Homework17\Homework17.csproj", "{94C662E4-36AA-450B-8224-8565E4A3C3BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdonetProject", "AdonetProject\AdonetProject.csproj", "{30C179BA-B518-4068-828F-2B6FE92F600E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkProject", "EntityFrameworkProject\EntityFrameworkProject.csproj", "{C407A5C0-C0AD-49EE-B204-E99D438B86CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ET_Main", "ET_Main\ET_Main.csproj", "{12DC94ED-6B8D-473D-BA53-E950F1147A98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +111,18 @@ Global
 		{94C662E4-36AA-450B-8224-8565E4A3C3BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C662E4-36AA-450B-8224-8565E4A3C3BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94C662E4-36AA-450B-8224-8565E4A3C3BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30C179BA-B518-4068-828F-2B6FE92F600E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C179BA-B518-4068-828F-2B6FE92F600E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C179BA-B518-4068-828F-2B6FE92F600E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C179BA-B518-4068-828F-2B6FE92F600E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C407A5C0-C0AD-49EE-B204-E99D438B86CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C407A5C0-C0AD-49EE-B204-E99D438B86CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C407A5C0-C0AD-49EE-B204-E99D438B86CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C407A5C0-C0AD-49EE-B204-E99D438B86CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12DC94ED-6B8D-473D-BA53-E950F1147A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12DC94ED-6B8D-473D-BA53-E950F1147A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12DC94ED-6B8D-473D-BA53-E950F1147A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12DC94ED-6B8D-473D-BA53-E950F1147A98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
