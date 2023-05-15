@@ -8,12 +8,12 @@ namespace AdonetProject
     {
         private const string DBName = "AdonetDb";
         private const string UsersTableName = "Users";
-        private static string _connectionStringAdonet => ConfigurationHelper.LocalAdonetDbConnectionString;
-        private static string _connectionStringMaster => ConfigurationHelper.LocalMasterDbConnectionString;
+        private static string СonnectionStringAdonet => ConfigurationHelper.LocalAdonetDbConnectionString;
+        private static string СonnectionStringMaster => ConfigurationHelper.LocalMasterDbConnectionString;
 
         public static string CreateDb()
         {
-            using (var sqlConnection = new SqlConnection(_connectionStringMaster))
+            using (var sqlConnection = new SqlConnection(СonnectionStringMaster))
             {
                 var sqlQuery = "SELECT name FROM sys.databases;";
                 var sqlDataAdapter = new SqlDataAdapter(sqlQuery, sqlConnection);
@@ -44,7 +44,7 @@ namespace AdonetProject
         {
             var adonetDb = CreateDb();
 
-            using (var sqlConnection = new SqlConnection(_connectionStringAdonet))
+            using (var sqlConnection = new SqlConnection(СonnectionStringAdonet))
             {
                 var sqlQuery = "SELECT name FROM sys.tables;";
                 var sqlDataAdapter = new SqlDataAdapter(sqlQuery, sqlConnection);
@@ -77,7 +77,7 @@ namespace AdonetProject
         {
             var usersTable = CreateUsersTable();
 
-            using (var sqlConnection = new SqlConnection(_connectionStringAdonet))
+            using (var sqlConnection = new SqlConnection(СonnectionStringAdonet))
             {
                 sqlConnection.Open();
                 var sqlQuery = $"INSERT INTO {usersTable} (firstName, lastName, email, age) VALUES ('{firstName}', '{lastName}', '{email}', {age})";
@@ -88,7 +88,7 @@ namespace AdonetProject
 
         public static string GetLastAddedValue(string columnName)
         {
-            using (var sqlConnection = new SqlConnection(_connectionStringAdonet))
+            using (var sqlConnection = new SqlConnection(СonnectionStringAdonet))
             {
                 sqlConnection.Open();
                 var sqlQuery = "SELECT * FROM Users WHERE id = (SELECT max(id) FROM Users)";

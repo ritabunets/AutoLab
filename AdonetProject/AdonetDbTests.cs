@@ -1,4 +1,5 @@
-﻿using AdonetProject.Models;
+﻿using AdonetProject.Constants;
+using AdonetProject.Models;
 using NUnit.Framework;
 
 namespace AdonetProject
@@ -12,10 +13,10 @@ namespace AdonetProject
 
             AdonetDbHelper.AddUser(newUser.FirstName, newUser.LastName, newUser.Email, newUser.Age);
 
-            var firstNameInDB = AdonetDbHelper.GetLastAddedValue("FirstName");
-            var lastNameInDB = AdonetDbHelper.GetLastAddedValue("LastName");
-            var emailInDB = AdonetDbHelper.GetLastAddedValue("Email");
-            var ageInDB = AdonetDbHelper.GetLastAddedValue("Age");
+            var firstNameInDB = AdonetDbHelper.GetLastAddedValue(UsersTableColumns.FirstName);
+            var lastNameInDB = AdonetDbHelper.GetLastAddedValue(UsersTableColumns.LastName);
+            var emailInDB = AdonetDbHelper.GetLastAddedValue(UsersTableColumns.Email);
+            var ageInDB = AdonetDbHelper.GetLastAddedValue(UsersTableColumns.Age);
 
             Assert.Multiple(() =>
             {

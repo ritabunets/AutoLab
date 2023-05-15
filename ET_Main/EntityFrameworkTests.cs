@@ -12,17 +12,14 @@ namespace ET_Main
 
             SqlHelper.AddNewEntryToUsers(newUser);
 
-            var userInDbFirstName = SqlHelper.GetLastEntryFromUsers(newUser.Id).FirstName;
-            var userInDbLastName = SqlHelper.GetLastEntryFromUsers(newUser.Id).LastName;
-            var userInDbEmail = SqlHelper.GetLastEntryFromUsers(newUser.Id).Email;
-            var userInDbAge = SqlHelper.GetLastEntryFromUsers(newUser.Id).Age.ToString();
+            var userInDb = SqlHelper.GetLastEntryFromUsers(newUser.Id);
 
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(newUser.FirstName, userInDbFirstName);
-                Assert.AreEqual(newUser.LastName, userInDbLastName);
-                Assert.AreEqual(newUser.Email, userInDbEmail);
-                Assert.AreEqual(newUser.Age.ToString(), userInDbAge);
+                Assert.AreEqual(newUser.FirstName, userInDb.FirstName);
+                Assert.AreEqual(newUser.LastName, userInDb.LastName);
+                Assert.AreEqual(newUser.Email, userInDb.Email);
+                Assert.AreEqual(newUser.Age.ToString(), userInDb.Age.ToString());
             });
         }
     }

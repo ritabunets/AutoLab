@@ -6,18 +6,6 @@ namespace ET_Main
 {
     public class SqlHelper
     {
-        public static string GetClientExtendedConnectionString(string sqlConnectionString)
-        {
-            var entityBuilder = new EntityConnectionStringBuilder
-            {
-                Provider = "System.Data.SqlClient",
-                ProviderConnectionString = sqlConnectionString,
-                Metadata = "res://*/AdonetDB.csdl|res://*/AdonetDB.ssdl|res://*/AdonetDB.msl"
-            };
-
-            return entityBuilder.ToString();
-        }
-
         public static List<T> GetAdonetDbInstance<T>(Func<AdonetDbEntities, IQueryable<T>> func)
         {
             using (var context = new AdonetDbEntities(GetClientExtendedConnectionString(ConfigurationHelper.LocalAdonetDbConnectionString)))
@@ -60,5 +48,17 @@ namespace ET_Main
 
         public static AdonetDbEntities GetAdonetdbEntities() =>
             new AdonetDbEntities(GetClientExtendedConnectionString(ConfigurationHelper.LocalAdonetDbConnectionString));
+
+        private static string GetClientExtendedConnectionString(string sqlConnectionString)
+        {
+            var entityBuilder = new EntityConnectionStringBuilder
+            {
+                Provider = "System.Data.SqlClient",
+                ProviderConnectionString = sqlConnectionString,
+                Metadata = "res://*/AdonetDB.csdl|res://*/AdonetDB.ssdl|res://*/AdonetDB.msl"
+            };
+
+            return entityBuilder.ToString();
+        }
     }
 }
